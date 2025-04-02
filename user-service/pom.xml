@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hotel</groupId>
-	<artifactId>hotel-booking-service</artifactId>
+	<artifactId>user-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hotel-booking-service</name>
-	<description>Microservice for hotel room booking and management</description>
+	<name>user-service</name>
+	<description>Microservice for users, roles and permissions</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -53,6 +53,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>8.0.1.Final</version>
 		</dependency>
 	</dependencies>
 
