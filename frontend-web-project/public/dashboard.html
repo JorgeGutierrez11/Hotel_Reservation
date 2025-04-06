@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Protegida</title>
+</head>
+<body>
+    <h1>Página Protegida</h1>
+    <p>Bienvenido a la zona segura.</p>
+    <button id="logout">Cerrar Sesión</button>
+
+    <script>
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            window.location.href = "/login";
+        }
+
+        document.getElementById("logout").addEventListener("click", () => {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+        })
+    </script>
+</body>
+</html>

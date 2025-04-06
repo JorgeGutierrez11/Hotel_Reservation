@@ -1,0 +1,228 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #EFEFEF; /* Fondo claro y suave */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 350px;
+    height: 100%;
+}
+
+/* Form Box */
+.form-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo */
+.logo {
+    width: 70px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    background-color: #f7f7f7;
+    padding: 5px;
+}
+
+/* Titles */
+h2 {
+    font-size: 18px;
+    color: #4A505E;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Labels & Inputs */
+label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+}
+
+input {
+    width: 95%;
+    padding: 3%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #DDD;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #FAFAFA;
+    transition: border-color 0.2s ease;
+}
+
+input:focus {
+    border-color: #4A90E2;
+    outline: none;
+    background-color: #FFF;
+}
+
+/* Password Field */
+.password-container {
+    position: relative;
+}
+
+/* Ícono toggle-password */
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888; /* Color neutro */
+    font-size: 16px;
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: #4A90E2; /* Color más marcado al pasar el ratón */
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(101, 174, 242, 0.9);
+    border: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: rgba(101, 174, 242, 1);
+}
+
+/* Terms & Conditions */
+.terms {
+    font-size: 12px;
+    color: #777;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.terms a {
+    color: #4A90E2;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.terms a:hover {
+    color: #357ABD;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 400px) {
+    .form-box {
+        padding: 20px;
+    }
+    input {
+        font-size: 13px;
+    }
+}
+/* Header container */
+.header {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: flex-start; /* Alinea horizontalmente hacia la izquierda */
+    gap: 10px; /* Espaciado entre el logo y el título */
+    margin-bottom: 20px; /* Espaciado debajo del header */
+}
+
+/* Logo */
+.logo {
+    width: 50px; /* Reduce tamaño del logo si es necesario */
+    height: 50px; /* Asegura que el logo tenga dimensiones cuadradas */
+}
+
+/* Título */
+.header h2 {
+    font-size: 20px;
+    color: #4A505E;
+    font-weight: 600;
+    margin: 0; /* Elimina el margen automático del <h2> */
+}
+/* Ocultar elementos inicialmente */
+.hidden {
+    display: none;
+
+}
+
+/* Separador */
+.separator {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaciado entre línea y texto */
+    margin: 20px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.separator hr {
+    flex-grow: 1; /* La línea se extiende */
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+}
+
+/* Botón alternativo */
+
+
+/* Enlace "¿Olvidaste tu contraseña?" */
+.forgot-password {
+
+    margin: 10px 0; /* Espaciado superior e inferior */
+    text-align: center; /* Centra el enlace */
+    font-size: 13px; /* Tamaño de texto más pequeño */
+    color: #4A90E2; /* Color azul similar a los términos */
+    font-weight: 500;
+    text-decoration: none; /* Quita el subrayado */
+    transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+    color: #357ABD; /* Hace el color más oscuro al pasar el mouse */
+}
+
+/* Botón alternativo (opacidad del 30%) */
+.btn-secondary {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(101, 174, 242, 0.5); /* Azul claro con 30% transparencia */
+    border: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(101, 174, 242, 1); /* Más opaco al pasar el mouse */
+}
