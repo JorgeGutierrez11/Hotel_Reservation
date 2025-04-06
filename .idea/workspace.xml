@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcddde86-34c3-4410-9a72-831e005aeafc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/initialize_frontend_project.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/hotel-user-service/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-user-service/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +26,14 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -61,7 +70,7 @@
     "javascript.nodejs.core.library.configured.version": "22.14.0",
     "javascript.nodejs.core.library.typings.version": "22.14.0",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/julia/IdeaProjects/Hotel_Reservation/frontend-web-project",
+    "last_opened_file_path": "C:/Users/julia/IdeaProjects/Hotel_Reservation/hotel-booking-service",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -138,7 +147,7 @@
       <updated>1743888197336</updated>
       <workItem from="1743888198751" duration="6999000" />
       <workItem from="1743944553857" duration="13906000" />
-      <workItem from="1743973955050" duration="718000" />
+      <workItem from="1743973955050" duration="1182000" />
     </task>
     <servers />
   </component>
