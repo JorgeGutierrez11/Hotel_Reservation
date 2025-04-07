@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Builder
@@ -21,7 +22,7 @@ public class RoomDTO {
     private String roomNumber;
 
     @NotNull
-    private Integer roomType;
+    private RoomType roomType;
 
     @NotNull
     @Min(value = 1, message = "La capacidad mínima es 1")
@@ -33,7 +34,14 @@ public class RoomDTO {
     private BigDecimal pricePerNight;
 
     @NotNull
-    private Integer roomStatus;
+    @Digits(integer = 1, fraction = 3)
+    private BigDecimal taxRate;
+
+    @NotNull
+    private RoomStatus roomStatus;
+
+    @NotNull
+    private List<Long> amenityIds;
 
     @NotBlank
     @Size(max = 255)

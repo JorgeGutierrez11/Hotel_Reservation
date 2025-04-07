@@ -22,7 +22,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "customer_id",nullable = false, unique = true)
+@Column(name = "customer_id",nullable = false)
     private Long customerId;
 
     @Column(name = "start_date",nullable = false)
@@ -40,6 +40,12 @@ public class Reservation {
 
     @Column(nullable = false)
     private BigDecimal taxes;
+
+    @Column(name = "check_in_date")
+    private LocalDateTime checkInDate;
+
+    @Column(name = "check_out_date")
+    private LocalDateTime checkOutDate;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "room_id", nullable = false)
