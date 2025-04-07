@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard de Usuarios</title>
+  <link rel="stylesheet" href="dash.css">
+</head>
+<body>
+  <h1>Administrar Usuarios</h1>
+  <button id="logout">Cerrar Sesión</button>
+    <script>
+        document.getElementById("logout").addEventListener("click", () => {
+            window.location.href = "/login";
+        })
+    </script>
+  <div id="table-container">
+    <table id="users-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Tipo de Documento</th>
+          <th>Número de Documento</th>
+          <th>Role</th>
+          <th>Contraseña</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Se llenará dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+  <script src="dash.js"></script>
+</body>
+</html>
