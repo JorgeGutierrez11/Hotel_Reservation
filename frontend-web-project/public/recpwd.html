@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta</title>
+    <link rel="stylesheet" href="CA.css">
+    <script defer src="js.js"></script>
+    <script defer src="/scripts/fetch.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-box">
+        <div class="header">
+            <img src="logo.png" alt="Hotel Logo" class="logo">
+            <h2>Crear cuenta</h2>
+        </div>
+
+        <form id="recpwdForm"  >
+            <label class="hidden" for="name">Nombre</label>
+            <input class="hidden" type="text" id="name" placeholder="Nombre" required>
+
+            <label for="email">Correo</label>
+            <input type="email" id="email" placeholder="Correo" required>
+
+            <label class="hidden" for="phone">Número de teléfono</label>
+            <input class="hidden" type="tel" id="phone" placeholder="Número de teléfono" required>
+
+            <label class="hidden" for="password">Contraseña</label>
+            <div class="hidden password-container">
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <i class="toggle-password fas fa-eye" onclick="togglePassword('password')"></i>
+            </div>
+
+            <label class="hidden" for="confirm-password">Escriba nuevamente su contraseña</label>
+            <div  class="hidden password-container">
+                <input type="password" id="confirm-password" placeholder="Confirmar contraseña" required>
+                <i class="toggle-password fas fa-eye" onclick="togglePassword('confirm-password')"></i>
+            </div>
+
+            <button type="submit" class="btn">Recuperar Contraseña </button>
+
+            <p class="hidden terms">Al continuar, aceptas los <a href="#">Términos de uso</a> y <a href="#">Políticas de privacidad</a></p>
+            <a href="/recpwd" class="hidden forgot-password ">¿Olvidaste tu contraseña?</a>
+
+        </form>
+        <div class=" separator">
+            <hr class="">
+            <p class="">Aun no tienes una cuenta?</p>
+            <hr class="">
+        </div>
+        <button type="button" class=" btn-secondary"onclick="window.location.href='/singup'">Crear Cuenta</button>
+    </div>
+</div>
+
+</body>
+</html>
