@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,6 +35,9 @@ public class Room {
     @Column(name = "price_per_night",nullable = false)
     private BigDecimal pricePerNight;
 
+    @Column(name = "tax_rate", nullable = false)
+    private BigDecimal taxRate;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RoomStatus roomStatus;
@@ -43,4 +47,12 @@ public class Room {
 
     @Column(length = 255)
     private String policies;
+
+    @ManyToMany
+    @JoinTable(
+            name = "room_amenities_relation",
+            joinColumns = @JoinColumn(name = "room_id"),
+            inverseJoinColumns = @JoinColumn(name = "amenity_id")
+    )
+    private List<RoomAmenity> amenity;
 }
