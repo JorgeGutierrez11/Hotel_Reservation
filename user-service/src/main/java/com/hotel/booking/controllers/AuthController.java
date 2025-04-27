@@ -3,6 +3,7 @@ package com.hotel.booking.controllers;
 import com.hotel.booking.exceptions.UserNotFoundException;
 import com.hotel.booking.models.dtos.request.LoginRequest;
 import com.hotel.booking.models.dtos.request.UserRequest;
+import com.hotel.booking.models.dtos.response.AuthResponse;
 import com.hotel.booking.models.entities.User;
 import com.hotel.booking.services.AuthService;
 import jakarta.validation.Valid;
@@ -41,14 +42,8 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> createUser(@Valid @RequestBody UserRequest user) {
-        try {
-            User u = authService.register(user);
-            return ResponseEntity.created(new URI("/users/" + u.getId())).body(u);
-        } catch (URISyntaxException e) {
-            LOGGER.error(e.getMessage());
-            return ResponseEntity.internalServerError().build();
-        }
+    public ResponseEntity<AuthResponse> createUser(@Valid @RequestBody UserRequest user) {
+        return ResponseEntity.ok(authService.register(user));
     }
 
 }
