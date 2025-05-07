@@ -8,6 +8,9 @@ import com.hotel.booking.models.dtos.response.AuthResponse;
 import com.hotel.booking.models.entities.User;
 import com.hotel.booking.models.enums.Role;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +22,23 @@ public class AuthService {
     private final JwtService jwtService;
 
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
-    public User login(LoginRequest loginRequest) {
+    public AuthResponse login(LoginRequest loginRequest) {
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getEmail(),
+                        loginRequest.getPassword()
+                )
+        );
+
         User user = userService.findUserByEmail(loginRequest.getEmail());
+        String token = jwtService.generateToken(user);
 
-        if(!user.getPassword().equals(loginRequest.getPassword())) {
-            throw new UserNotFoundException("User Not Found");
-        }
-        return user;
+        return AuthResponse.builder()
+                .token(token)
+                .build();
     }
 
     public AuthResponse register(UserRequest userRequest) {
