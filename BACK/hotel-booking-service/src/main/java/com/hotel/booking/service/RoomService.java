@@ -94,4 +94,16 @@ public class RoomService {
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         }));
     }
+
+    public List<Integer> getAllCapacities() {
+        return roomRepository.findDistinctCapacities();
+    }
+
+    public List<RoomType> getAllTypes() {
+        return roomRepository.findDistinctTypes();
+    }
+
+    public List<String> getAllAmenityNames() {
+        return amenityRepository.findAllAmenityName();
+    }
 }

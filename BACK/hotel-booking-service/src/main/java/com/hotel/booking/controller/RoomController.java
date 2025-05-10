@@ -1,6 +1,8 @@
 package com.hotel.booking.controller;
 
 import com.hotel.booking.exception.NoSuchDataException;
+import com.hotel.booking.model.dto.FilterOptionsDTO;
+import com.hotel.booking.model.dto.ResponseDTO;
 import com.hotel.booking.model.dto.RoomDTO;
 import com.hotel.booking.model.entity.Room;
 import com.hotel.booking.model.enums.RoomType;
@@ -23,16 +25,24 @@ public class RoomController {
     }
 
     /* Filters */
-    /* Ejemplo de uso: GET /room/filter?type=STANDARD&minCapacity=2&amenityIds=1,2,5 */
+    /* Ejemplo de uso: GET /room/filter?type=STANDARD&capacity=2&amenityIds=1,2,5 */
 
     @GetMapping("/filter")
-    public ResponseEntity<List<Room>> filterRooms(
+    public ResponseEntity<ResponseDTO> filterRooms(
             @RequestParam(required = false) RoomType type,
             @RequestParam(required = false) Integer capacity,
             @RequestParam(required = false) List<Long> amenityIds
     ) {
         List<Room> rooms = roomService.filterRooms(type, capacity, amenityIds);
-        return ResponseEntity.ok(rooms);
+
+        List<Integer> allCapacities = roomService.getAllCapacities();
+        List<RoomType> allTypes = roomService.getAllTypes();
+        List<String> allAmenities = roomService.getAllAmenityNames();
+
+        FilterOptionsDTO filters = new FilterOptionsDTO(allCapacities, allTypes, allAmenities);
+        ResponseDTO response = new ResponseDTO(rooms, filters);
+
+        return ResponseEntity.ok(response);
     }
 
     /* CRUD */
@@ -74,4 +84,6 @@ public class RoomController {
                                     @Valid @RequestBody RoomDTO roomDTO) {
         return ResponseEntity.ok(roomService.update(id, roomDTO));
     }
+
+
 }
