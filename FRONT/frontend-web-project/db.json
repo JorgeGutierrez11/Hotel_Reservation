@@ -1,0 +1,44 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "title": "Zapatilla Urbana",
+        "price": 89.99,
+        "color": "Negro",
+        "size": ["38", "39", "40", "41"],
+        "images": [
+          "https://example.com/shoe1-1.jpg",
+          "https://example.com/shoe1-2.jpg"
+        ],
+        "descripcion": "Zapatilla cómoda para uso diario.",
+        "feactures": ["Ligera", "Antideslizante", "Transpirable"]
+      },
+      {
+        "id": 2,
+        "title": "Zapato Deportivo Running",
+        "price": 119.99,
+        "color": "Azul",
+        "size": ["40", "41", "42", "43"],
+        "images": [
+          "https://example.com/shoe2-1.jpg",
+          "https://example.com/shoe2-2.jpg"
+        ],
+        "descripcion": "Ideal para corredores exigentes.",
+        "feactures": ["Alta amortiguación", "Suela flexible", "Material transpirable"]
+      },
+      {
+        "id": 3,
+        "title": "Bota Trekking Montaña",
+        "price": 149.99,
+        "color": "Gris",
+        "size": ["42", "43", "44", "45"],
+        "images": [
+          "https://example.com/shoe3-1.jpg",
+          "https://example.com/shoe3-2.jpg"
+        ],
+        "descripcion": "Bota robusta y resistente al agua para excursiones.",
+        "feactures": ["Impermeable", "Soporte para tobillo", "Suela de alta tracción"]
+      }
+    ]
+  }
+  
