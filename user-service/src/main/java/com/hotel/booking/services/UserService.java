@@ -47,7 +47,7 @@ public class UserService implements CrudService<User> {
                 .numberDocument(user.getNumberDocument())
                 .phoneNumber(user.getPhoneNumber())
                 .password(user.getPassword())
-                .role(Role.USER)
+                .role(user.getRole())
                 .build();
 
         return this.save(u);

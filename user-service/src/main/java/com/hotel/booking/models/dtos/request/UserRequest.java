@@ -1,6 +1,7 @@
 package com.hotel.booking.models.dtos.request;
 
 
+import com.hotel.booking.models.enums.Role;
 import com.hotel.booking.models.enums.TypeDocument;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -28,5 +29,6 @@ public class UserRequest {
     private String phoneNumber;
     @NotBlank
     private String password;
+    private Role role;
 
 }

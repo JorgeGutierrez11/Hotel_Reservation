@@ -18,7 +18,8 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class JwtService {
 
-    private String generator; //Quien genera el token, en este caso es el backend
+    //Quien genera el token, en este caso es el backend
+    private final String generator = "BACKEND-AUTH";
     //Generamos una clave segura
     private static final String SECRET_KEY = Jwts.SIG.HS256.key().toString()
             .replace(".", "").replace("@", "");

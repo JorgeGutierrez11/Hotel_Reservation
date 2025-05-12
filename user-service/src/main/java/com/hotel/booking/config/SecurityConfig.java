@@ -29,6 +29,13 @@ public class SecurityConfig {
                     //Definir rutas públicas como Login y Register
                     request.requestMatchers("/auth/**").permitAll();
 
+                    //Solo puede hacer estas peticiones un ADMIN
+//                    request.requestMatchers("/users/**")
+//                            .hasRole("ADMIN");
+
+//                    request.requestMatchers("/users/user/**", "/users/update")
+//                            .hasAnyRole("ADMIN", "USER");
+
                     //Para las demás rutas se requiere atenticaión
                     request.anyRequest().authenticated();
                 })
