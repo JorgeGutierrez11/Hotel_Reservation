@@ -1,11 +1,11 @@
 export interface Room {
   id: number;
   roomNumber: string;
-  roomType: 'SINGLE' | 'STANDARD' | 'SUITE' | 'DELUXE' | 'PENTHOUSE' | 'FAMILY';
+  roomType: string;
   pricePerNight: number;
   capacity: number;
   taxRate: number;
-  roomStatus: 'AVAILABLE' | 'OCCUPIED' | 'MAINTENANCE';
+  roomStatus: string;
   description: string;
   policies?: string;
   amenity: RoomAmenity[];

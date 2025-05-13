@@ -56,7 +56,7 @@ export const Home = () => {
     };
 
     const [filters, setFilters] = useState<RoomFilterResponse>(emptyRoomFilterResponse);
-    console.log(`capacidad ${filters.capacitiesResponse} - comodidades ${filters.amenitiesResponse} - type ${filters.roomTypesResponse}`)
+    /* console.log(`capacidad ${filters.capacitiesResponse} - comodidades ${filters.amenitiesResponse} - type ${filters.roomTypesResponse}`) */
 
     const apiCall = useMemo(() => getFilterRooms(filters), [filters]);
     const { data, error, loading, fetch } = useApi<DataProps>(apiCall);

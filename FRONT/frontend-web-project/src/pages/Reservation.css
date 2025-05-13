@@ -1,0 +1,19 @@
+.reservation-container {
+    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+}
+
+.reservation-left {
+    background-color: blueviolet;
+    width: 60%;
+}
+
+.reservation-right {
+    background-color: yellowgreen;
+}
+
+.left-calendar {
+    display: flex;
+    justify-content: center;
+}

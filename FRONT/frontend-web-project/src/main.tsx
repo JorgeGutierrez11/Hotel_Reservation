@@ -1,11 +1,10 @@
 import { BrowserRouter } from 'react-router'
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
 import { initAxios } from './api/services/axios.service.ts'
 import { GlobalProvider } from './context/global.context.tsx'
 import { AppRoutes } from './AppRoutes.tsx'
+import App from './App.tsx'
+import './index.css'
 
 initAxios();
 createRoot(document.getElementById('root')!).render(
@@ -14,7 +13,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <GlobalProvider>
         <App>
-          <AppRoutes />
+            <AppRoutes />
         </App>
       </GlobalProvider>
     </BrowserRouter>
