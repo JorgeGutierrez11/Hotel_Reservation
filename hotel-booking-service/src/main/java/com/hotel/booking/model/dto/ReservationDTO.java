@@ -14,8 +14,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservationDTO {
-    @NotNull
-    private Long customerId;
+
+//    @NotNull
+//    private Long customerId;
 
     @NotNull
     @FutureOrPresent(message = "La fecha de inicio debe ser presente o futura")

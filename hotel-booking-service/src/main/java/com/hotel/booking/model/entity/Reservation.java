@@ -18,11 +18,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "reservations")
 public class Reservation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-@Column(name = "customer_id",nullable = false)
+    @Column(name = "customer_id",nullable = false)
     private Long customerId;
 
     @Column(name = "start_date",nullable = false)

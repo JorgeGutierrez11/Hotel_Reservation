@@ -1,19 +1,17 @@
 package com.hotel.booking.jwt;
 
-import com.hotel.booking.models.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 
 @Service
@@ -27,33 +25,6 @@ public class JwtService {
     @Value("${jwt.secret_key}")
     private String SECRET_KEY;
 
-    public String generateToken(UserDetails userDetails) {
-        User user = (User) userDetails;
-        Map<String, Object> extraClaims = new HashMap<>();
-
-        extraClaims.put("id", user.getId());
-        extraClaims.put("name", user.getName());
-        extraClaims.put("lastname", user.getLastname());
-        extraClaims.put("typeDocument", user.getTypeDocument());
-        extraClaims.put("numberDocument", user.getNumberDocument());
-        extraClaims.put("phoneNumber", user.getPhoneNumber());
-        extraClaims.put("password", user.getPassword());
-        extraClaims.put("roles", user.getAuthorities());
-
-        return generateToken(extraClaims, userDetails);
-    }
-
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        return Jwts.builder()
-                .subject(userDetails.getUsername()) //Utiliza el email
-                .issuer(generator)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) //Agregamos un día de expiración
-                .claims(extraClaims)
-                .signWith(this.getSecretKey())
-                .compact();
-    }
-
     private Key getSecretKey() {
         byte[] encodedKey = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(encodedKey);
@@ -61,29 +32,17 @@ public class JwtService {
 
     //Creación de métodos para extraer información del token
 
-    /**
-     * <p>
-     *     Para poder implementar este método debemos descriptar el token
-     *     para este se crear un método especifico para esto y dentro
-     *     del token desencriptado buscamos el {@code subject}, que fue el
-     *     username que buscamos
-     * </p>
-     * @param token El token que llega por el request
-     * @return El username que contiene el token
-     */
     public String getUsernameFromToken(String token) {
-        //Es lo mismo que poner getClaim(token, claim -> claim.getSubject());
         return getClaim(token, Claims::getSubject);
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username = getUsernameFromToken(token);
-        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+    public boolean isTokenValid(String token) {
+        return !isTokenExpired(token);
     }
 
-    private Claims getAllClaims(String token) {
-        return Jwts.
-                parser()
+    public Claims getAllClaims(String token) {
+        return Jwts
+                .parser()
                 .setSigningKey(this.getSecretKey())
                 .build()
                 .parseSignedClaims(token)

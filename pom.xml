@@ -21,10 +21,11 @@
     <modules>
         <module>user-service</module>
         <module>hotel-booking-service</module>
+        <module>gateway</module>
     </modules>
 
-    <groupId>com.entornos</groupId>
-    <artifactId>Hotel-Backend</artifactId>
+    <groupId>com.hotel</groupId>
+    <artifactId>hotel-backend-padre</artifactId>
     <version>1.0</version>
 
     <properties>

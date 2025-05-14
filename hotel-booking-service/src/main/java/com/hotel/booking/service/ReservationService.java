@@ -11,6 +11,7 @@ import com.hotel.booking.repository.ReservationRepository;
 import com.hotel.booking.repository.RoomRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -19,9 +20,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ReservationService {
+
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
     private static final Logger log = LoggerFactory.getLogger(ReservationService.class);
@@ -70,6 +73,10 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
+    public List<Reservation> findReservationsByUser() {
+        return reservationRepository.findReservationsByUser(getUserIdFromClaims());
+    }
+
     public Reservation findById(long id) {
         return reservationRepository.findById(id)
                 .orElseThrow(() -> new NoSuchDataException("Reservación no encontrada"));
@@ -105,7 +112,7 @@ public class ReservationService {
         BigDecimal totalPrice = calculateTotalCost(price, days, taxes);
 
         Reservation reservation = Reservation.builder()
-                .customerId(reservationDTO.getCustomerId())
+                .customerId(getUserIdFromClaims())
                 .startDate(reservationDTO.getStartDate())
                 .endDate(validationDate(reservationDTO))
                 .reservationStatus(reservationDTO.getReservationStatus())
@@ -128,7 +135,7 @@ public class ReservationService {
         long days = calculateDays(reservationDTO.getStartDate(), reservationDTO.getEndDate());
         BigDecimal totalPrice = calculateTotalCost(price, days, taxes);
 
-        reservation.setCustomerId(reservationDTO.getCustomerId());
+        reservation.setCustomerId(getUserIdFromClaims());
         reservation.setStartDate(reservationDTO.getStartDate());
         reservation.setEndDate(validationDate(reservationDTO));
         reservation.setReservationStatus(reservationDTO.getReservationStatus());
@@ -184,5 +191,12 @@ public class ReservationService {
         reservationRepository.save(reservation);
     }
 
+    private Long getUserIdFromClaims() {
+        Map<String, Object> extraClaims = (Map<String, Object>)
+                SecurityContextHolder.getContext().getAuthentication().getDetails();
+
+        Number userId = (Number) extraClaims.get("id");
+        return userId.longValue();
+    }
 
 }

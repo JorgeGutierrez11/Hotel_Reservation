@@ -5,9 +5,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,6 +20,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <h1>Filtro personalizado</h1>
@@ -35,34 +42,47 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
             throws ServletException, IOException {
 
         String token = this.getTokenFromRequest(request);
+//        System.out.println(jwtService.getAllClaims(token));
+//        System.out.println("User id: " + jwtService.getAllClaims(token).get("id"));
 
         if(token == null) {
+            LOGGER.info("Token not found in request");
             filterChain.doFilter(request, response);
             return;
         }
 
-        String username = jwtService.getUsernameFromToken(token);
+        if(jwtService.isTokenValid(token)) {
+            LOGGER.info("Token is valid");
+            String username = jwtService.getUsernameFromToken(token);
 
-        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                Map<String, Object> extraClaims = jwtService.getAllClaims(token);
+                List<Map<String, String>> roles = (List<Map<String, String>>) extraClaims.get("roles");
 
-            if(jwtService.isTokenValid(token, userDetails)) {
-                UsernamePasswordAuthenticationToken authUser =
+                //System.out.print(roles);
+
+                Collection<? extends GrantedAuthority> authorities = roles.stream()
+                        .map(r -> new SimpleGrantedAuthority(r.get("authority")))
+                        .collect(Collectors.toList());
+
+                System.out.println(authorities);
+
+                UsernamePasswordAuthenticationToken auth =
                         new UsernamePasswordAuthenticationToken(
-                                userDetails, null, userDetails.getAuthorities()
+                                username, null, authorities
                         );
 
-                //No entiendo muy bien por qué se agrega esto jeje
-                authUser.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                SecurityContextHolder.getContext().setAuthentication(authUser);
-                System.out.println(SecurityContextHolder.getContext().getAuthentication());
+                auth.setDetails(extraClaims);
+                SecurityContextHolder.getContext().setAuthentication(auth);
             }
 
         }
