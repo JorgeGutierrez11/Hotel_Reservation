@@ -34,7 +34,7 @@ public class ReservationService {
         this.roomRepository = roomRepository;
     }
 
-    /* Validaciones y Logica de calculo */
+    /* Validaciones y Logica de calcfindReservationsByUserulo */
 
     private LocalDateTime validationDate(ReservationDTO reservationDTO) {
         if (!reservationDTO.getStartDate().isBefore(reservationDTO.getEndDate())) {
@@ -72,6 +72,11 @@ public class ReservationService {
     public List<Reservation> findAll() {
         return reservationRepository.findAll();
     }
+
+    public List<Reservation> findByStatusNot() {
+        return reservationRepository
+                .findByStatusNot(ReservationStatus.CANCELED);
+    };
 
     public List<Reservation> findReservationsByUser() {
         return reservationRepository.findReservationsByUser(getUserIdFromClaims());
