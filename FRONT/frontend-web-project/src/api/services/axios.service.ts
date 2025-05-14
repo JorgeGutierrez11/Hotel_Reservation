@@ -4,7 +4,12 @@ import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 
 let axiosInstance: AxiosInstance;
 
 const createAxios = (baseURL: string) => {
-  axiosInstance = axios.create({ baseURL });
+  axiosInstance = axios.create({
+    baseURL,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
 };
 
 const setupInterceptors = () => {
@@ -40,7 +45,7 @@ const setupInterceptors = () => {
 };
 
 export const initAxios = () => {
-  createAxios("http://localhost:8080"); 
+  createAxios("http://localhost:8080");
   setupInterceptors();
 };
 

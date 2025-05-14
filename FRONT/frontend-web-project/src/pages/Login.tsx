@@ -12,10 +12,18 @@ export const Login = () => {
     try {
       await loginUser(email, password);
       navigate("/private/dashboard");
-    } catch (err) {
-      alert("Credenciales incorrectas");
+    } catch (err: any) {
+      if (err.response && err.response.status === 401) {
+        alert("Credenciales incorrectas");
+      } else if (err.message === "Network Error") {
+        alert("Error de red: Verifica tu conexión o el backend");
+      } else {
+        alert("Ocurrió un error inesperado");
+        console.error("Login error:", err);
+      }
     }
   };
+  
 
   return (
     <form onSubmit={handleLogin}>
