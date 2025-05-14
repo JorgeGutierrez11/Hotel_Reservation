@@ -1,6 +1,7 @@
 package com.hotel.booking.repository;
 
 import com.hotel.booking.model.entity.Reservation;
+import com.hotel.booking.model.enums.ReservationStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +18,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     List<Reservation> findReservationsByDates(@Param("roomId") Long roomId,
                                               @Param("startDate") LocalDateTime startDate,
                                               @Param("endDate") LocalDateTime endDate);
+
+    @Query("SELECT r FROM Reservation r WHERE r.reservationStatus != :status")
+    List<Reservation> findByStatusNot(@Param("status") ReservationStatus status);
 }

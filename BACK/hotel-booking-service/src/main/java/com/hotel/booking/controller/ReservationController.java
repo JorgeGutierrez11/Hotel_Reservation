@@ -1,6 +1,7 @@
 package com.hotel.booking.controller;
 
 import com.hotel.booking.exception.NoSuchDataException;
+import com.hotel.booking.exception.RoomUnavailableException;
 import com.hotel.booking.model.dto.ReservationDTO;
 import com.hotel.booking.model.entity.Reservation;
 import com.hotel.booking.service.ReservationService;
@@ -26,6 +27,11 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.findAll());
     }
 
+    @GetMapping("/getByStatusNot")
+    public  ResponseEntity<List<Reservation>> findByStatusNot() {
+        return ResponseEntity.ok(reservationService.findByStatusNot());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> finById(@PathVariable Long id) {
         try {
@@ -42,7 +48,7 @@ public class ReservationController {
             return ResponseEntity.noContent().build();
         } catch (NoSuchDataException err) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err.getMessage());
-        }  catch (Exception err) {
+        } catch (Exception err) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(err.getMessage());
         }
     }
@@ -52,8 +58,10 @@ public class ReservationController {
         try {
             Reservation reservation = reservationService.create(reservationDTO);
             return ResponseEntity.created(new URI("/reservation/create/" + reservation.getId())).build();
+        } catch (RoomUnavailableException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
         } catch (IllegalArgumentException err) {
-            return ResponseEntity.badRequest().body("Datos invalidos:" + err.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err.getMessage());
         } catch (Exception err) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(err.getMessage());
         }
@@ -79,6 +87,7 @@ public class ReservationController {
         reservationService.checkIn(id);
         return ResponseEntity.ok().build();
     }
+
     /*@PreAuthorize("hasRole('RECEPTIONIST')")*/
     @PostMapping("/check-out/{id}")
     public ResponseEntity<Void> checkOut(@PathVariable Long id) {

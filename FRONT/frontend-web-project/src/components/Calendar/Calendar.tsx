@@ -1,7 +1,7 @@
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import React from 'react';
 
 interface Props {
@@ -22,8 +22,14 @@ export const Calendar = ({ blockedDates, value, setValue, minDate }: Props) => {
                         onChange={(newValue) => setValue(newValue)}
                         shouldDisableDate={(date) => {
                             const isBlocked = blockedDates.some(blockedDate => date.isSame(blockedDate, 'day'));
-                            const isBeforeMin = minDate ? date.isSame(minDate, 'day') || date.isBefore(minDate, 'day') : false;
-                            return isBlocked || isBeforeMin;
+
+                            const isBeforeToday = date.isBefore(dayjs(), 'day');
+
+                            const isBeforeMin = minDate
+                                ? date.isSame(minDate, 'day') || date.isBefore(minDate, 'day')
+                                : false;
+
+                            return isBlocked || isBeforeMin || isBeforeToday;
                         }}
                     />
                 </LocalizationProvider>

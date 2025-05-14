@@ -1,0 +1,70 @@
+.container {
+    background-color: #FFF;
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 42px;
+    padding-top: 10px;
+    box-shadow: 5px 5px 40px;
+}
+
+.container-data {
+
+}
+
+.data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    align-items: center;
+    padding-right: 50px;
+}
+
+.button {
+    margin-right: 20px;
+    height: 40px;
+    border-radius: 12px;
+    border-color: #262626;
+    border-width: 1px;
+    border-style: solid;
+    font-size: medium;
+    font-weight: 600;
+}
+
+.button:hover {
+    cursor: pointer;
+    border-color: black;
+}
+
+#undo {
+    width: 100px;
+    color: #262626;
+    background-color: #FAFAFA;
+}
+
+#undo:hover {
+    color: #000;
+    background-color: #d8d8d8;
+}
+
+#save {
+    color: #fff;
+    background-color: #262626;
+    padding: 0px 10px 0px 10px;
+}
+
+#save:hover {
+    color: #FAFAFA;
+    background-color: #505050;
+}

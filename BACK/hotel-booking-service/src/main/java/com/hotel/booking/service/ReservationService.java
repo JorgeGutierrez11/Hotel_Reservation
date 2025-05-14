@@ -47,14 +47,14 @@ public class ReservationService {
         }
 
         List<Reservation> reservations = reservationRepository.findReservationsByDates(roomId, startDate, endDate);
-        log.info("Lista de reservas en estas fechas: {}", reservations);
+        /*log.info("Lista de reservas en estas fechas: {}", reservations);*/
         return reservations.isEmpty();
     }
 
     private long calculateDays(LocalDateTime start, LocalDateTime end) {
         long hours = ChronoUnit.HOURS.between(start, end);
         long days = (long) Math.ceil(hours / 24.0);
-        log.info("Calculando días: {} horas entre {} y {}, resultado = {} días", hours, start, end, days);
+        /*log.info("Calculando días: {} horas entre {} y {}, resultado = {} días", hours, start, end, days);*/
         return days;
     }
 
@@ -68,6 +68,10 @@ public class ReservationService {
 
     public List<Reservation> findAll() {
         return reservationRepository.findAll();
+    }
+
+    public List<Reservation> findByStatusNot() {
+        return reservationRepository.findByStatusNot(ReservationStatus.CANCELED);
     }
 
     public Reservation findById(long id) {
@@ -90,8 +94,7 @@ public class ReservationService {
                 reservationDTO.getRoomId(),
                 reservationDTO.getStartDate(),
                 reservationDTO.getEndDate());
-
-        log.info("isAvailable: {}", isAvailable);
+        /*log.info("isAvailable: {}", isAvailable);*/
 
         if (!isAvailable) {
             throw new RoomUnavailableException("La habitación no esta disponible");

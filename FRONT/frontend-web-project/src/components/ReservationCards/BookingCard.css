@@ -1,0 +1,145 @@
+.container-history {
+    background-color: #FFF;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0px auto 50px auto;
+    height: 270px;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 42px;
+    padding-top: 10px;
+    box-shadow: 5px 5px 40px;
+}
+
+.history-room-image {
+    width: 30%;
+    height: 100%;
+    border-radius: 24px;
+}
+
+.history-room-image .room {
+    width: 100%;
+    height: 100%;
+}
+
+.details {
+    height: 100%;
+    flex-grow: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px 0 10px;
+    margin-bottom: 5px;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.header > h1 {
+    font-size: 2rem;
+}
+
+.header > p {
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 20px;
+}
+
+.header > p:hover {
+    
+}
+
+.header .CHECKED_IN {
+    color: rgb(22 101 52 / var(--tw-text-opacity, 1));
+    background-color: rgb(220 252 231 / var(--tw-bg-opacity, 1));
+}
+
+.header .CONFIRMED {
+    color: rgb(22 101 52 / var(--tw-text-opacity, 1));
+    background-color: rgb(220 252 231 / var(--tw-bg-opacity, 1));
+}
+
+.header .PENDING {
+    color: rgb(133 77 14 / var(--tw-text-opacity, 1));
+    background-color: rgb(254 249 195 / var(--tw-bg-opacity, 1));
+}
+
+.header .COMPLETED {
+    color: rgb(30 64 175 / var(--tw-text-opacity, 1));
+    background-color: rgb(219 234 254 / var(--tw-bg-opacity, 1));
+}
+
+.header .CANCELED {
+    color: rgb(153 27 27 / var(--tw-text-opacity, 1));
+    background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1));
+}
+
+.location {
+    padding: 5px;
+    display: flex;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.room-details {
+    margin: 5px;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.feature-container {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+
+.feature > p{
+    margin-bottom: .4rem;
+}
+
+.feature .icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#total-cost.icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.details .buttons .button {
+    width: 110px;
+    margin-right: 10px;
+}
+
+.details .buttons {
+    padding-right: 15px;
+}
+
+#cancel {
+    background-color: #FF4E4E;
+    border-color: #FF4E4E;
+    color: #FFF;
+}
+
+#cancel:hover {
+    background-color: #fd6969;
+}
+
+#update {
+    background-color: #262626;
+    color: #FFF;
+}
+
+#update:hover {
+    color: #FAFAFA;
+    background-color: #505050;
+    border-color: #505050;
+}

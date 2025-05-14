@@ -64,7 +64,7 @@ export const Home = () => {
     useEffect(() => fetch(), [fetch]);
 
     const rooms = data?.rooms;
-    console.log(rooms)
+    /* console.log(rooms) */
     const capacityOptions: number[] = data?.filters.capacities ?? [];
     const roomTypeOptions: string[] = data?.filters.roomTypes ?? [];
     const amenityOptions: string[] = data?.filters.amenities ?? [];

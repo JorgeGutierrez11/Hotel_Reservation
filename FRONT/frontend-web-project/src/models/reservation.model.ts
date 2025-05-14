@@ -14,13 +14,13 @@ export interface ReservationProps {
 }
 
 export interface ReservationResponse {
+  roomId: number;
   customerId: number; 
+  reservationStatus: string; 
   startDate: string;
   endDate: string;
-  reservationStatus: string; 
   checkInDate?: string;
   checkOutDate?: string;
-  roomId: number;
 }
 
 export const empyReservationResponse:ReservationResponse = {

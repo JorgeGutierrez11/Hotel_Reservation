@@ -1,8 +1,8 @@
-import axios from "axios";
 import { loadAbort } from "../utilities/loadAbort.utility";
 import { Room, RoomFilter, RoomFilterResponse } from "../../models/rooms.model";
+import { getHttpClient } from "./axios.service";
 
-const BASE_URL = "http://localhost:8080/room";
+const BASE_URL = "/room";
 
 interface DataProps {
     rooms: Room[];
@@ -10,6 +10,7 @@ interface DataProps {
 }
 
 export const getFilterRooms = (filters: RoomFilterResponse) => {
+    const http = getHttpClient();
     const params = new URLSearchParams();
 
     if (filters.roomTypesResponse) params.append("type", filters.roomTypesResponse);
@@ -18,7 +19,16 @@ export const getFilterRooms = (filters: RoomFilterResponse) => {
 
     const controller = loadAbort();
     return {
-        call: axios.get<DataProps>(`${BASE_URL}/filter?${params}`, { signal: controller.signal }),
+        call: http.get<DataProps>(`${BASE_URL}/filter?${params}`, { signal: controller.signal }),
+        controller
+    }
+}
+
+export const getRoomForId = (id: number) => {
+    const http = getHttpClient();
+    const controller = loadAbort();
+    return {
+        call: http.get<Room>(`${BASE_URL}/${id}`, { signal: controller.signal }),
         controller
     }
 }
