@@ -1,3 +1,8 @@
+.home {
+    background: linear-gradient(180deg, #f2fcfd 0%, #e6fafa 100%);
+
+}
+
 .home-header {
     height: 50vh;
     background-image:
@@ -18,7 +23,7 @@
     max-width: 600px;
 }
 
-.header-content h1{
+.header-content h1 {
     font-size: 3rem;
     font-weight: bold;
     margin: 0;
@@ -45,7 +50,7 @@
     gap: 20px;
 }
 
-.loading-cards > h1 {
+.loading-cards>h1 {
     font-weight: 500;
     margin: 20px;
 }
@@ -75,12 +80,10 @@
     display: flex !important;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(
-        139deg,
-        rgba(2, 0, 36, 0.2) 0%,
-        rgba(9, 9, 121, 0.2) 35%,
-        rgba(0, 212, 255, 0.2) 100%
-    );
+    background: linear-gradient(139deg,
+            rgba(2, 0, 36, 0.2) 0%,
+            rgba(9, 9, 121, 0.2) 35%,
+            rgba(0, 212, 255, 0.2) 100%);
     border: 1px solid rgba(100, 149, 237, 0.4);
     width: 32px;
     height: 32px;

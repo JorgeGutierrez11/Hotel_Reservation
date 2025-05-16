@@ -7,19 +7,26 @@ const createAxios = (baseURL: string) => {
   axiosInstance = axios.create({
     baseURL,
     headers: {
-      "Content-Type": "application/json"
-    }
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': true
+  },  
+    withCredentials: false // 👈 Debe coincidir con allowCredentials del backend
   });
 };
 
 const setupInterceptors = () => {
   axiosInstance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
+      // Añade este bloque para peticiones OPTIONS (preflight)
+      if (config.method?.toUpperCase() === "OPTIONS") {
+        config.headers["Access-Control-Request-Method"] = "*"; // 👈 Ayuda en desarrollo
+      }
+      
       const token = localStorage.getItem("token");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
-      console.log(`Request to: ${config.url}`);
+      console.log(`Request to: ${config.url}`, config.headers); // 👈 Mostrar headers
       return config;
     },
     (error) => Promise.reject(error)
@@ -30,20 +37,23 @@ const setupInterceptors = () => {
       console.log(`Response from: ${response.config.url}`, {
         data: response.data,
         status: response.status,
+        headers: response.headers // 👈 Verificar headers CORS en respuesta
       });
       return response;
     },
     (error) => {
       if (error.response) {
-        console.error(`Error from: ${error.response.config.url}`);
-      } else {
-        console.error(`Error: ${error.message}`);
+        console.error(`Error from: ${error.response.config.url}`, {
+          status: error.response.status,
+          headers: error.response.headers // 👈 Verificar headers en errores
+        });
       }
       return Promise.reject(error);
     }
   );
 };
 
+// Inicialización (debe ejecutarse al cargar la app)
 export const initAxios = () => {
   createAxios("http://localhost:8080");
   setupInterceptors();
@@ -51,7 +61,7 @@ export const initAxios = () => {
 
 export const getHttpClient = (): AxiosInstance => {
   if (!axiosInstance) {
-    throw new Error("Axios instance not initialized. Call initAxios() in main.tsx");
+    initAxios(); // 👈 Auto-inicialización como fallback
   }
-  return axiosInstance;
+  return axiosInstance!;
 };

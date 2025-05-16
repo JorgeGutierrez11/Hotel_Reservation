@@ -9,22 +9,22 @@ interface Reservation {
   startDate: string;
   endDate: string;
   reservationStatus:
-    | "PENDING"
-    | "CONFIRMED"
-    | "CHECKED_IN"
-    | "COMPLETED"
-    | "CANCELED";
+  | "PENDING"
+  | "CONFIRMED"
+  | "CHECKED_IN"
+  | "COMPLETED"
+  | "CANCELED";
   totalCost: number;
   room: {
     id: number;
     roomNumber: string;
     roomType:
-      | "SINGLE"
-      | "STANDARD"
-      | "SUITE"
-      | "DELUXE"
-      | "PENTHOUSE"
-      | "FAMILY";
+    | "SINGLE"
+    | "STANDARD"
+    | "SUITE"
+    | "DELUXE"
+    | "PENTHOUSE"
+    | "FAMILY";
     capacity: number;
   };
 }
@@ -101,41 +101,44 @@ function Profile() {
   const [bookingHistory, setBookingHistory] = useState(false);
 
   return (
-    <div className="profile-page" style={{marginTop:'100px'}}>
+    <div className="profile-page" style={{ paddingTop: '100px' }}>
       <div className="profile-header">
-        <div className="title">
+        <div className="profile-header-title">
           <img src={ProfileImage} alt="Imagen de perfil" />
-          <div className="description">
+          <div className="profile-header-description">
             <h1>Información personal</h1>
             <p>Gestiona tu información personal y de contacto</p>
           </div>
         </div>
-        <button className="edit-profile">Editar Perfil</button>
+        <button className="profile-edit-button">Editar Perfil</button>
       </div>
       <DataCard />
-      <div className="booking-slider">
+      <div className="slider-actions">
         <div className="slider-container">
-          <button className="slider" onClick={() => setBookingHistory(false)}>
+          <button
+            className={`slider ${bookingHistory === true ? "active" : ""}`}
+            onClick={() => setBookingHistory(true)}>
             Reservas actuales
           </button>
           <button
-            className="slider"
-            id="init"
-            onClick={() => setBookingHistory(true)}
+            className={`slider ${bookingHistory === false ? "active" : ""}`}
+            onClick={() => setBookingHistory(false)}
           >
             Historial de reservas
           </button>
         </div>
       </div>
-      {reservations
-        .filter((reservation) =>
-          bookingHistory
-            ? !["PENDING", "CONFIRMED", "CHECKED_IN"].includes(reservation.reservationStatus)
-            : ["PENDING", "CONFIRMED", "CHECKED_IN"].includes(reservation.reservationStatus)
-        )
-        .map((reservation) => (
-          <BookingCard key={reservation.id} reservation={reservation} />
-        ))}
+      <div className="bookingcard-container">
+        {reservations
+          .filter((reservation) =>
+            bookingHistory
+              ? !["PENDING", "CONFIRMED", "CHECKED_IN"].includes(reservation.reservationStatus)
+              : ["PENDING", "CONFIRMED", "CHECKED_IN"].includes(reservation.reservationStatus)
+          )
+          .map((reservation) => (
+            <BookingCard key={reservation.id} reservation={reservation} />
+          ))}
+      </div>
     </div>
   );
 }

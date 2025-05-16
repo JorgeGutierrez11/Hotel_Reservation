@@ -15,7 +15,6 @@ export interface ReservationProps {
 
 export interface ReservationResponse {
   roomId: number;
-  customerId: number; 
   reservationStatus: string; 
   startDate: string;
   endDate: string;
@@ -24,7 +23,6 @@ export interface ReservationResponse {
 }
 
 export const empyReservationResponse:ReservationResponse = {
-        customerId: 0,
         roomId: 0,
         reservationStatus: "",
         startDate: "",

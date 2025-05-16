@@ -7,7 +7,7 @@ export interface Room {
   taxRate: number;
   roomStatus: string;
   description: string;
-  policies?: string;
+  policies: string;
   amenity: RoomAmenity[];
 }
 

@@ -1,14 +1,18 @@
 import "./PaymentMethodForm.css"
 import React, { useState } from 'react';
 import './PaymentMethodForm.css';
+import { Dayjs } from "dayjs";
 
 interface PaymentMethodFormProps {
-    totalAmount: number;
+    endValue: Dayjs | null;
+    startValue: Dayjs | null;
+    roomStatus: string | undefined;
     onSubmit: (e: React.FormEvent) => Promise<(() => void) | undefined>;
 }
 
-export const PaymentMethodForm = ({ totalAmount, onSubmit }: PaymentMethodFormProps) => {
+export const PaymentMethodForm = ({ endValue, startValue, onSubmit, roomStatus }: PaymentMethodFormProps) => {
     const [method, setMethod] = useState<'card' | 'paypal'>('card');
+    const selectDate: boolean = roomStatus === "MAINTENANCE" || !startValue || !endValue;
 
     return (
         <div className="payment-method-form">
@@ -17,6 +21,7 @@ export const PaymentMethodForm = ({ totalAmount, onSubmit }: PaymentMethodFormPr
             <div className="payment-toggle">
                 <button
                     className={`toggle-option ${method === 'card' ? 'active' : ''}`}
+
                     onClick={() => setMethod('card')}
                 >
                     Tarjeta
@@ -28,7 +33,7 @@ export const PaymentMethodForm = ({ totalAmount, onSubmit }: PaymentMethodFormPr
                     Paypal
                 </button>
             </div>
-            <form onSubmit={onSubmit} key={method}> 
+            <form onSubmit={onSubmit} key={method}>
                 {method === 'card' ?
                     <div className="card-details">
                         <label>
@@ -36,7 +41,7 @@ export const PaymentMethodForm = ({ totalAmount, onSubmit }: PaymentMethodFormPr
                             <input type="text" name="cardNumber" placeholder="0000 0000 0000 0000" required />
                         </label>
 
-                        <div className="card-row">  
+                        <div className="card-row">
                             <label>
                                 Fecha de expedicion
                                 <input type="text" name="cardDate" placeholder="MM/AA" required />
@@ -51,7 +56,7 @@ export const PaymentMethodForm = ({ totalAmount, onSubmit }: PaymentMethodFormPr
                     <div className="card-details">
                         <label>
                             Ingrese su correo PayPal
-                            <input type="text"  name="paypalEmail" placeholder="example@gmail.com" required />
+                            <input type="text" name="paypalEmail" placeholder="example@gmail.com" required />
                         </label>
                         <div className="card-row">
                             <label>
@@ -61,8 +66,12 @@ export const PaymentMethodForm = ({ totalAmount, onSubmit }: PaymentMethodFormPr
                         </div>
                     </div>
                 }
-                <button className="confirm-btn" type="submit">
-                    Confirmar y pagar  ${totalAmount}
+                <button
+                    className="confirm-btn"
+                    type="submit"
+                    disabled={selectDate}
+                >
+                    Confirmar y pagar
                 </button>
             </form>
 

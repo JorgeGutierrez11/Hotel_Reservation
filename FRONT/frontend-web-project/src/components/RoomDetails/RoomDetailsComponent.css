@@ -1,0 +1,147 @@
+/* --------------------------------------------------
+   CONTENEDOR PRINCIPAL DE INFORMACIÓN
+-------------------------------------------------- */
+.container-info {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px auto 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  /* --------------------------------------------------
+     DESCRIPCIÓN DE LA SALA
+  -------------------------------------------------- */
+  .container-info .description {
+    width: 85%;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow:  0 0 40px rgba(150, 150, 150, 0.3);
+    padding: 15px;
+  }
+  
+  .container-info .description span h3,  .container-info .description > h3{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .container-info .description span p {
+    font-size: large;
+    line-height: 1.6;
+    color: #404040;
+    margin-bottom: 1.5rem;
+  }
+  
+  .container-info .description span ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+  
+  .container-info .description span ul li {
+    margin-bottom: 8px;
+    font-size: large;
+    color: #404040;
+  }
+  
+  .details-content {
+    display: flex;
+  }
+  
+
+  /* --------------------------------------------------
+     SECCIÓN DE PRECIO Y RESERVA
+  -------------------------------------------------- */
+  .container-info .price {
+    width: 25%;
+    border: 2px solid #aeaeae;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+  
+  .container-info .price > h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .container-info .price .separator {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    margin: 15px 0;
+    border-radius: 20px;
+    background-color: #aeaeae;
+  }
+  
+  .container-info .price .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    margin-bottom: 8px;
+  }
+  
+  .container-info .price .inner .value {
+    font-weight: 600;
+  }
+  
+  /* Botón de reserva */
+  .container-info .price .booking-button {
+    width: 100%;
+    height: 35px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #262626;
+    background-color: #262626;
+    color: #fff;
+    font-size: medium;
+    font-weight: 600;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .container-info .price .booking-button:hover {
+    background-color: #505050;
+    border-color: #505050;
+    color: #fafafa;
+    cursor: pointer;
+  }
+  
+  /* Estilos especiales */
+  #total {
+    background-color: black;
+    margin-bottom: 5px;
+  }
+  
+  #total-price {
+    font-weight: 600;
+  }
+  
+  /* --------------------------------------------------
+     AMENIDADES (LISTA DE SERVICIOS)
+  -------------------------------------------------- */
+  .amenities {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  
+  .amenities li {
+    font-size: large;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #404040;
+  }
+  
+  .amenities .icon {
+    font-size: 1.4rem;
+    color: #262626;
+  }
+  

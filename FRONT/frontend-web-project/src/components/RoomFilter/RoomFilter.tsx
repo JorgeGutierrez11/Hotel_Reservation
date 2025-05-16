@@ -80,7 +80,7 @@ export const BarRoomFilter = ({ sendData, capacityOptions, roomTypeOptions, amen
                                                 );
 
                                                 setAmenitysres((prev) =>
-                                                    prev.includes(i+1) ? prev.filter((a) => a != i+1) : [...prev, i+1]
+                                                    prev.includes(i + 1) ? prev.filter((a) => a != i + 1) : [...prev, i + 1]
                                                 );
                                             }}
                                         />{option}

@@ -17,8 +17,8 @@ export const DateSelector = ({
   blockedDates,
 }: DateSelectorProps) => {
   return (
-    <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-      <div>
+    <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }} className="content-calendar">
+      <div className="calendar1">
         <h4>Fecha de Inicio</h4>
         <Calendar
           blockedDates={blockedDates}
@@ -26,7 +26,7 @@ export const DateSelector = ({
           setValue={setStartValue}
         />
       </div>
-      <div>
+      <div className="calendar2">
         <h4>Fecha de Fin</h4>
         <Calendar
           blockedDates={blockedDates}

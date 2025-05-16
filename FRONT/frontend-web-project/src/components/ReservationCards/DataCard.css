@@ -1,70 +1,66 @@
+/* Contenedor general del formulario */
 .container {
-    background-color: #FFF;
+    background-color: #fff;
     width: 80%;
     max-width: 1200px;
-    margin: auto;
-    height: 320px;
+    margin: 40px auto;
+    padding: 10px;
+    border-radius: 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    border-radius: 42px;
-    padding-top: 10px;
-    box-shadow: 5px 5px 40px;
-}
-
-.container-data {
-
-}
-
-.data {
+    
+  }
+  
+  /* Contenedor de inputs */
+  .data {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-}
-
-
-.buttons {
+    gap: 5px;
+  }
+  
+  /* Contenedor de botones */
+  .data-buttons {
     display: flex;
     justify-content: flex-end;
-    flex-grow: 1;
     align-items: center;
-    padding-right: 50px;
-}
-
-.button {
-    margin-right: 20px;
-    height: 40px;
+    gap: 16px;
+  }
+  
+  /* Estilo base para botones */
+  .button {
+    height: 42px;
+    padding: 0 20px;
     border-radius: 12px;
-    border-color: #262626;
-    border-width: 1px;
-    border-style: solid;
-    font-size: medium;
+    font-size: 1rem;
     font-weight: 600;
-}
-
-.button:hover {
+    border: 1px solid #262626;
+    transition: all 0.2s ease;
     cursor: pointer;
-    border-color: black;
-}
-
-#undo {
-    width: 100px;
+  }
+  
+  /* Botón de cancelar */
+  #undo {
+    background-color: #fafafa;
     color: #262626;
-    background-color: #FAFAFA;
-}
-
-#undo:hover {
+  }
+  
+  #undo:hover {
+    background-color: #e6e6e6;
     color: #000;
-    background-color: #d8d8d8;
-}
-
-#save {
-    color: #fff;
+    border-color: #000;
+  }
+  
+  /* Botón de guardar */
+  #save {
     background-color: #262626;
-    padding: 0px 10px 0px 10px;
-}
-
-#save:hover {
-    color: #FAFAFA;
-    background-color: #505050;
-}
+    color: #fff;
+    border: none;
+  }
+  
+  #save:hover {
+    background-color: #444;
+    color: #fafafa;
+  }
+  

@@ -1,0 +1,157 @@
+/* ---------------------------------------------
+   CONTENEDOR PRINCIPAL
+---------------------------------------------- */
+.room-details {
+    padding: 20px;
+    width: 100%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, #f2fcfd 0%, #e6fafa 100%);
+  }
+  
+  /* ---------------------------------------------
+     HEADER DE DETALLES DE LA SALA
+  ---------------------------------------------- */
+  .header-details {
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .header-details .title h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Estados de disponibilidad */
+  .header-details .title .AVAILABLE,
+  .header-details .title .OCCUPIED,
+  .header-details .title .MAINTENANCE {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 25px;
+    display: inline-block;
+  }
+  
+  .AVAILABLE {
+    color: #337a5d;
+    border: 2px solid #c7e2ce;
+    background-color: #ddfce6;
+  }
+  
+  .OCCUPIED {
+    color: #a94442;
+    border: 2px solid #f4c2c2;
+    background-color: #fdecea;
+  }
+
+  .MAINTENANCE {
+    color: #ff0000;
+    border: 2px solid #f4c2c2;
+    background-color: #fdecea;
+  }
+  
+  /* Capacidad */
+  .capacity {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: large;
+    font-weight: bold;
+  }
+  
+  .capacity img {
+    width: 15px;
+    margin-right: 8px;
+  }
+  
+  /* Logo */
+  .logo img {
+    max-width: 150px;
+    height: auto;
+  }
+  
+  /* ---------------------------------------------
+     SLIDER: BOTONES DETALLES / RESERVAR
+  ---------------------------------------------- */
+  .slider-actions {
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slider-container {
+    background-color: #84E6E3;
+    width: 80%;
+    height: 30px;
+    display: flex;
+    gap: 10px;
+    padding: 4px;
+    border-radius: 12px;
+  }
+  
+  .slider {
+    flex: 1;
+    border-radius: 10px;
+    font-size: medium;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    transition: background-color 0.3s ease-in-out, color 0.3s;
+  }
+  
+  .slider:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Botón activo */
+  .slider.active {
+    background-color: #ffffff;
+    color: #262626;
+    border: 1px solid #ffffff;
+  }
+  
+  /* ---------------------------------------------
+     SECCIÓN ANIMADA
+  ---------------------------------------------- */
+  .animated-section {
+    width: 100%;
+    text-align: center;
+    margin: 30px 0 20px;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animated-section h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ---------------------------------------------
+     SECCIÓN DE RESERVA
+  ---------------------------------------------- */
+  .reserva-contenido {
+    display: flex;
+    justify-content: center;
+  }
+  

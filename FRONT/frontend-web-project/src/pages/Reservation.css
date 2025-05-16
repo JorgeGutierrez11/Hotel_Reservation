@@ -1,6 +1,96 @@
+/* Contenedor principal de la sección de reservas */
 .reservation-container {
-}
+    padding: 0px 20px;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Contenedor del calendario + resumen */
+  .sumalendar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    margin: auto;
+    max-width: 1200px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    padding: 30px;
+  }
+  
+  /* Contenedor para ambos calendarios */
+  .content-calendar {
+    display: flex;
+    gap: 20px;
+    min-width: 700px;
+  }
+  
+  /* Sección de cada calendario individual */
+  .calendar1, .calendar2 {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .calendar1 {
+    border-right: 1px solid #e0e0e0;
+    padding-right: 20px;
+  }
+  
+  .calendar2 {
+    border-left: 1px solid #e0e0e0;
+    padding-left: 20px;
+  }
+  
+  .calendar1 > h4,
+  .calendar2 > h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Contenedor del resumen de reserva */
+  .summary-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+  }
+  
+  /* Imagen del calendario cuando no hay fechas */
+  .calendar-image {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .calendar-image > img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  /* Contenedor del formulario de pago */
+  .payform-container {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 24px;
 
-.reservation-summary {
-    background-color: aqua;
-}
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #444;
+  }
+  

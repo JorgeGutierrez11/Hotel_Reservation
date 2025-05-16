@@ -32,12 +32,12 @@ export const Home = () => {
         {
             "id": 3,
             "image": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
-            "title": "Suite con Piscina Infinita Privada"
+            "title": "Suite con Piscina Privada"
         },
         {
             "id": 4,
             "image": "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
-            "title": "Valet Parking con Autos Eléctricos"
+            "title": "Valet Parking"
         },
         {
             "id": 5,
@@ -101,6 +101,7 @@ export const Home = () => {
                             {rooms?.map((room) => (
                                 <div key={room.id} className="slide-item">
                                     <RoomCard
+                                        id={room.id}
                                         image="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
                                         roomType={room.roomType}
                                         description={room.description}

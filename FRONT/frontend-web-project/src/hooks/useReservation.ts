@@ -33,15 +33,6 @@ export const useReservation = () => {
     } = useApi<ReservationProps[]>(getReservationsCall);
     useEffect(() => fetchReservations(), [fetchReservations]);
 
-    // Función para manejar cambios en los inputs
-    /*const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setReservationData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    }; */
-
     // Función para crear una nueva reserva (POST)
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -51,7 +42,6 @@ export const useReservation = () => {
         const formattedEnd = endValue?.format("YYYY-MM-DDTHH:mm:ss") ?? "";
 
         if (
-            !reservationData.customerId ||
             !reservationData.roomId ||
             !reservationStatus ||
             !startValue ||
