@@ -49,4 +49,6 @@ public class RoomDTO {
 
     @NotBlank
     private List<String> policies;
+
+    private String imageUrl;
 }
