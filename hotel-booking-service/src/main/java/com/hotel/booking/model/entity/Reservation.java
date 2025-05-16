@@ -1,5 +1,6 @@
 package com.hotel.booking.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hotel.booking.model.enums.ReservationStatus;
 import com.hotel.booking.model.enums.RoomStatus;
 import jakarta.persistence.*;
@@ -24,6 +25,7 @@ public class Reservation {
     private Long id;
 
     @Column(name = "customer_id",nullable = false)
+    @JsonIgnore
     private Long customerId;
 
     @Column(name = "start_date",nullable = false)

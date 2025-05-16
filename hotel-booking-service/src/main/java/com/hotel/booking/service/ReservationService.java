@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
@@ -77,6 +78,21 @@ public class ReservationService {
         return reservationRepository
                 .findByStatusNot(ReservationStatus.CANCELED);
     };
+
+    /**
+     * <p>
+     *     Trae de base de datos, todas las reservas realizadas para 1 habitación
+     *     en específico, ignorando las que están canceladas.
+     * </p>
+     * @param roomId Habitación a la que se le quieren ver las reservas que tiene asociadas
+     * @return Una {@code List<Reservation>} que contiene las reservaciones que ya están
+     * echas para esa habitacion
+     */
+    public List<Reservation> filterReservationsByRoom(Long roomId) {
+        return this.findByStatusNot().stream()
+                .filter(r -> r.getRoom().getId().equals(roomId))
+                .collect(Collectors.toList());
+    }
 
     public List<Reservation> findReservationsByUser() {
         return reservationRepository.findReservationsByUser(getUserIdFromClaims());

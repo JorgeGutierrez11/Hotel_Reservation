@@ -44,10 +44,9 @@ public class RoomDTO {
     private List<Long> amenityIds;
 
     @NotBlank
-    @Size(max = 255)
+    @Size(max = 500)
     private String description;
 
     @NotBlank
-    @Size(max = 255)
-    private String policies;
+    private List<String> policies;
 }

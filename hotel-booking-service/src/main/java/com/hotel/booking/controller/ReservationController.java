@@ -35,6 +35,11 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.findByStatusNot());
     }
 
+    @GetMapping("/filter/{roomId}")
+    public ResponseEntity<List<Reservation>> filterByStatus(@PathVariable Long roomId) {
+        return ResponseEntity.ok(reservationService.filterReservationsByRoom(roomId));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> finById(@PathVariable Long id) {
         try {

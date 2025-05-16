@@ -42,11 +42,13 @@ public class Room {
     @Column(nullable = false)
     private RoomStatus roomStatus;
 
-    @Column(length = 255)
+    @Column(length = 500)
     private String description;
 
-    @Column(length = 255)
-    private String policies;
+    private List<String> policies;
+
+    @Column(columnDefinition = "TEXT")
+    private String imageUrl;
 
     @ManyToMany
     @JoinTable(
