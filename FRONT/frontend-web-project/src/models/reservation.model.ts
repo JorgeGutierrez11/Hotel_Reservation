@@ -11,7 +11,12 @@ export interface ReservationProps {
   checkOutDate: string | null;
   room: Room;
 }
-
+export interface ReservationToCheckOut {
+  id: number;
+  roomNumber: string;
+  clientName: string;
+  room: Room;
+}
 export interface ReservationResponse {
   roomId: number;
   reservationStatus: string;

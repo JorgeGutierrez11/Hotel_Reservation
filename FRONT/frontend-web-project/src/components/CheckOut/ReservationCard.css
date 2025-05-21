@@ -1,0 +1,50 @@
+.reservation-card-ui {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 12px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    font-size: 20px;
+    margin-right: 12px;
+    color: #444;
+}
+
+.text .name {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    color: #333;
+}
+
+.text .room {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+}
+
+.btn-select {
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.btn-select:hover {
+    background: #000;
+}

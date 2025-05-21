@@ -1,4 +1,4 @@
-import { ReservationProps, ReservationResponse } from "../../models/reservation.model";
+import { ReservationProps, ReservationResponse, ReservationToCheckOut } from "../../models/reservation.model";
 import { UseApiCall } from "../models/useApi.model";
 import { loadAbort } from "../utilities/loadAbort.utility";
 import { getHttpClient } from "./axios.service";
@@ -13,7 +13,14 @@ export const getAllReservation = (): UseApiCall<ReservationProps[]> => {
         controller
     }
 }
-
+export const listPendingReservations = (): UseApiCall<ReservationToCheckOut[]> => {
+    const http = getHttpClient();
+    const controller = loadAbort();
+    return {
+        call: http.get<ReservationToCheckOut[]>(`${BASE_URL}/getByStatusNot`, { signal: controller.signal }),
+        controller
+    }
+}
 export const createReservation = (props: ReservationResponse) => {
     const http = getHttpClient();
     const controller = loadAbort();

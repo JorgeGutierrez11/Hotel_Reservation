@@ -1,27 +1,18 @@
 import { TypeDocument } from "./typeDoc.enum";
-export interface Client {
-    id: number;
+export interface UserRequest {
+
     name: string;
     lastname: string;
     email: string;
     typeDocument: TypeDocument;
     numberDocument: string;
+
     phoneNumber: string;
+
     password: string;
 }
+export const emptyUserRequest: UserRequest = {
 
-export const emptyClient: Client = {
-    id:0,
-    numberDocument: "",
-    typeDocument: TypeDocument.CC,
-    name: "",
-    lastname: "",
-    phoneNumber: "",
-    email: "",
-    password: ""
-}
-export const empyUser: Client = {
-    id:0,
     numberDocument: "",
     typeDocument: TypeDocument.CC,
     name: "",

@@ -1,0 +1,153 @@
+.check-container {
+    background: #e8f3f7;
+    padding: 20px;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+.navbarspace{
+    margin-top: 100px;
+}
+.header .logo {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 30px;
+    margin: 0 5px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.tab-button.active {
+    background-color: #c7f8f5;
+}
+
+.tab-content {
+    margin-top: 20px;
+}
+
+.footer {
+    margin-top: 40px;
+    font-size: 12px;
+    color: #666;
+}
+/* Base styles */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f8fafa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for the whole form or success box */
+.form-box {
+    background-color: white;
+    width: 90%;
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 30px 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Headings */
+.form-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.form-box p {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+/* Input field */
+.form-box input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px 0 5px 0;
+    box-sizing: border-box;
+    transition: border 0.2s ease-in-out;
+}
+
+.form-box input[type="text"]:focus {
+    border-color: #a0e8e2;
+    outline: none;
+}
+
+/* Small help text */
+.form-box small {
+    display: block;
+    color: #888;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+}
+
+/* Button */
+.btn {
+    background-color: #222;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #444;
+}
+
+/* Info box on success */
+.info-box {
+    background-color: #f5f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    margin: 20px 0;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.info-box p {
+    margin: 8px 0;
+}
+
+/* Success check icon */
+h3::before {
+    content: "✅ ";
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+    .form-box {
+        padding: 20px 15px;
+    }
+}
