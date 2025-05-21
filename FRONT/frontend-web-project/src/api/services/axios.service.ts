@@ -10,23 +10,23 @@ const createAxios = (baseURL: string) => {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': true
   },  
-    withCredentials: false // 👈 Debe coincidir con allowCredentials del backend
+    withCredentials: false 
   });
 };
 
 const setupInterceptors = () => {
   axiosInstance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-      // Añade este bloque para peticiones OPTIONS (preflight)
+      
       if (config.method?.toUpperCase() === "OPTIONS") {
-        config.headers["Access-Control-Request-Method"] = "*"; // 👈 Ayuda en desarrollo
+        config.headers["Access-Control-Request-Method"] = "*"; 
       }
       
       const token = localStorage.getItem("token");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
-      console.log(`Request to: ${config.url}`, config.headers); // 👈 Mostrar headers
+      console.log(`Request to: ${config.url}`, config.headers);
       return config;
     },
     (error) => Promise.reject(error)
@@ -37,7 +37,7 @@ const setupInterceptors = () => {
       console.log(`Response from: ${response.config.url}`, {
         data: response.data,
         status: response.status,
-        headers: response.headers // 👈 Verificar headers CORS en respuesta
+        headers: response.headers 
       });
       return response;
     },
@@ -45,7 +45,7 @@ const setupInterceptors = () => {
       if (error.response) {
         console.error(`Error from: ${error.response.config.url}`, {
           status: error.response.status,
-          headers: error.response.headers // 👈 Verificar headers en errores
+          headers: error.response.headers 
         });
       }
       return Promise.reject(error);
@@ -61,7 +61,7 @@ export const initAxios = () => {
 
 export const getHttpClient = (): AxiosInstance => {
   if (!axiosInstance) {
-    initAxios(); // 👈 Auto-inicialización como fallback
+    initAxios();
   }
   return axiosInstance!;
 };

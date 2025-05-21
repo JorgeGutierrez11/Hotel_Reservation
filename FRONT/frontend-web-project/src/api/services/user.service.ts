@@ -1,52 +1,51 @@
-import axios from "axios"
-import { Client } from "../../models/client.model"
+import { User } from "../../models/client.model"
 import { loadAbort } from "../utilities/loadAbort.utility"
 import { UseApiCall } from "../models/useApi.model"
 import { getHttpClient } from "./axios.service"
 
-const BASE_URL = "/client"
+const BASE_URL = "/User"
 
-export const getClient = (id: number): UseApiCall<Client> => {
+export const getUser = (id: number): UseApiCall<User> => {
     const controller = loadAbort();
     const http = getHttpClient();
     return {
-        call: http.get<Client>(`${BASE_URL}/${id}`, { signal: controller.signal }),
+        call: http.get<User>(`${BASE_URL}/${id}`, { signal: controller.signal }),
         controller
     };
 }
 
-export const getAllClients = (): UseApiCall<Client> => { // Puede estas muy mal
+export const getAllUsers = (): UseApiCall<User> => { // Puede estas muy mal
     const controller = loadAbort();
     const http = getHttpClient();
     return {
-        call: http.get<Client>(`${BASE_URL}`, { signal: controller.signal }),
+        call: http.get<User>(`${BASE_URL}`, { signal: controller.signal }),
         controller
     };
 }
 
-export const createClient = (client: Client): UseApiCall<Client> => {
+export const createUser = (User: User): UseApiCall<User> => {
     const controller = loadAbort();
     const http = getHttpClient();
     return {
-        call: http.post<Client>(`${BASE_URL}`, client, { signal: controller.signal }),
+        call: http.post<User>(`${BASE_URL}`, User, { signal: controller.signal }),
         controller
     };
 }
 
-export const updateClient = (id: number, client: Client): UseApiCall<Client> => {
+export const updateUser = (id: number, User: User): UseApiCall<User> => {
     const http = getHttpClient();
     const controller = loadAbort();
     return {
-        call: http.put<Client>(`${BASE_URL}/${id}`, client, { signal: controller.signal }),
+        call: http.put<User>(`${BASE_URL}/${id}`, User, { signal: controller.signal }),
         controller
     };
 }
 
-export const deleteClient = (id: number): UseApiCall<void> => {
+export const deleteUser = (id: number): UseApiCall<void> => {
     const http = getHttpClient();
     const controller = loadAbort();
     return {
-        call: http.delete<void>(`${BASE_URL}/deleteClient/${id}`, { signal: controller.signal }),
+        call: http.delete<void>(`${BASE_URL}/deleteUser/${id}`, { signal: controller.signal }),
         controller
     };
 }

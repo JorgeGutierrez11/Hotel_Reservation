@@ -1,27 +1,15 @@
 import { useEffect, useState } from "react";
 import { Input } from "../general/Input";
 import "./DataCard.css";
+import { empyUser, User } from "../../models/client.model";
+import { Reservation } from "../../models/reservation.model";
 
-interface User {
-    Nombre: string,
-    Apellido: string,
-    Documento: string,
-    Correo: string,
-    Teléfono: string,
-    Contraseña: string,
+interface DataCardProps {
+    userData: User;
+    reservation: Reservation[];
 }
 
-const empyUser = {
-    Nombre: "",
-    Apellido: "",
-    Documento: "",
-    Correo: "",
-    Teléfono: "",
-    Contraseña: "",
-
-}
-
-function DataCard() {
+function DataCard(/* { userData }: DataCardProps */) {
     const [copyFormData, setCopyFormData] = useState<User>(empyUser);
     const [formData, setFormData] = useState<User>(empyUser);
 
@@ -35,18 +23,10 @@ function DataCard() {
     ];
 
     /* llamo a la api y seteo los datos del user */
-    useEffect(() => {
-        const userData = {
-            Nombre: "Jorge",
-            Apellido: "Gutierrez",
-            Documento: "1000339308",
-            Correo: "jorge@gmail.com",
-            Teléfono: "3125198961",
-            Contraseña: "jorge123",
-        };
+/*     useEffect(() => {
         setFormData(userData);
         setCopyFormData(userData);
-    }, [])
+    }, [userData]) */
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -75,7 +55,7 @@ function DataCard() {
                             key={name}
                             name={name}
                             type={type}
-                            value={formData[name as keyof User]} // Indicamos que name es clave válida
+                            value={"jiji " /* formData[name as keyof User] */} // Indicamos que name es clave válida
                             onChange={handleChange}
                         />
                     ))}

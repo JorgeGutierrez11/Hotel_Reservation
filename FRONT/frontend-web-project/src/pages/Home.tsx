@@ -10,6 +10,7 @@ import { useApi } from "../api/hooks/useApi";
 import { RoomCard } from "../components/RoomCard/RoomCard";
 import { ServiceCard } from "../components/ServiceCard/ServiceCard";
 import { BlinkBlur } from "react-loading-indicators";
+import ups from '../assets/ups.png'
 import "./Home.css"
 
 interface DataProps {
@@ -60,11 +61,9 @@ export const Home = () => {
 
     const apiCall = useMemo(() => getFilterRooms(filters), [filters]);
     const { data, error, loading, fetch } = useApi<DataProps>(apiCall);
-    /* console.log(data) */
     useEffect(() => fetch(), [fetch]);
 
     const rooms = data?.rooms;
-    /* console.log(rooms) */
     const capacityOptions: number[] = data?.filters.capacities ?? [];
     const roomTypeOptions: string[] = data?.filters.roomTypes ?? [];
     const amenityOptions: string[] = data?.filters.amenities ?? [];
@@ -91,27 +90,35 @@ export const Home = () => {
                         amenityOptions={amenityOptions}
                     />
                 </div>
-                {loading || error ?
+                {loading || error
+                    ?
                     <div className="loading-cards">
                         <h1>Cargando habitaciones....</h1>
                         <BlinkBlur color={["#2b6b2b", "#1e4b7a", "#5d2b5d", "#8a4e1a"]} />
-                    </div> :
-                    <div className="room-cards">
-                        <Slider {...settings}>
-                            {rooms?.map((room) => (
-                                <div key={room.id} className="slide-item">
-                                    <RoomCard
-                                        id={room.id}
-                                        image="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-                                        roomType={room.roomType}
-                                        description={room.description}
-                                        pricePerNight={room.pricePerNight}
-                                        capacity={room.capacity}
-                                    />
-                                </div>
-                            ))}
-                        </Slider>
                     </div>
+                    :
+                    data && data.rooms.length != 0
+                        ?
+                        <div className="room-cards">
+                            <Slider {...settings}>
+                                {rooms?.map((room) => (
+                                    <div key={room.id} className="slide-item">
+                                        <RoomCard
+                                            id={room.id}
+                                            image={room.imageUrl}
+                                            roomType={room.roomType}
+                                            description={room.description}
+                                            pricePerNight={room.pricePerNight}
+                                            capacity={room.capacity}
+                                        />
+                                    </div>
+                                ))}
+                            </Slider>
+                        </div>
+                        :
+                        <div className='calendar-image ups-image'>
+                            <img src={ups} />
+                        </div>
                 }
                 <div className="sevices-card">
                     <h1 className="services-principal-title">Servicios Principales</h1>

@@ -57,7 +57,7 @@
 
   width: 100%;
   box-sizing: border-box;
-  text-align: center;
+  text-align: left;
 }
 
 .filter-group select:focus,

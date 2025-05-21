@@ -4,9 +4,7 @@ import RoomImage from "./RoomImage";
 /* Esto deberai se un Room pero esta sujeto a cambios */
 interface RoomDetail {
   description: string;
-  politicas: {
-    items: string[];
-  };
+  politicas: string[];
   comodidades: {
     icon: string;
     text: string;
@@ -30,7 +28,7 @@ function RoomDetailsComponent({ roomDetails }: Props) {
 
             <h3>Políticas</h3>
             <ul>
-              {roomDetails.politicas.items.map((item, index) => (
+              {roomDetails.politicas.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>

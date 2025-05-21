@@ -2,7 +2,6 @@ import { Room } from "./rooms.model";
 
 export interface ReservationProps {
   id: number;
-  customerId: number;
   startDate: string;
   endDate: string;
   reservationStatus: string;
@@ -15,16 +14,33 @@ export interface ReservationProps {
 
 export interface ReservationResponse {
   roomId: number;
-  reservationStatus: string; 
+  reservationStatus: string;
   startDate: string;
   endDate: string;
   checkInDate?: string;
   checkOutDate?: string;
 }
 
-export const empyReservationResponse:ReservationResponse = {
-        roomId: 0,
-        reservationStatus: "",
-        startDate: "",
-        endDate: "",
-    }
+export const empyReservationResponse: ReservationResponse = {
+  roomId: 0,
+  reservationStatus: "",
+  startDate: "",
+  endDate: "",
+}
+
+export interface Amenity {
+  id: number;
+  name: string;
+}
+
+export interface Reservation {
+  id: number;
+  startDate: string; 
+  endDate: string;
+  reservationStatus: string;
+  totalCost: number;
+  taxes: number;
+  checkInDate: string | null;
+  checkOutDate: string | null;
+  room: Room;
+}

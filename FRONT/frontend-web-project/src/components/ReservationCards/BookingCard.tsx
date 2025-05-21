@@ -1,23 +1,9 @@
 import "./BookingCard.css";
-import RoomImage from "../../assets/Rectangle 13.svg";
 import UbicationIcon from "../../assets/BookingCard/ubicacion.svg";
 import CalendarIcon from "../../assets/BookingCard/calendar.svg";
 import StarIcon from "../../assets/BookingCard/star.svg";
 import Usericon from "../../assets/person.svg";
-
-interface Reservation {
-  id: number;
-  startDate: string;
-  endDate: string;
-  reservationStatus: "PENDING" | "CONFIRMED" | "CHECKED_IN" | "COMPLETED" | "CANCELED";
-  totalCost: number;
-  room: {
-    id: number;
-    roomNumber: string;
-    roomType: "SINGLE" | "STANDARD" | "SUITE" | "DELUXE" | "PENTHOUSE" | "FAMILY";
-    capacity: number;
-  };
-}
+import { Reservation } from "../../models/reservation.model";
 
 interface ReservationProps {
   reservation: Reservation;
@@ -31,7 +17,7 @@ function BookingCard({ reservation }: ReservationProps) {
   return (
     <div className="booking-card">
       <div className="image-container">
-        <img className="room-imager" src={RoomImage} alt="Habitación" />
+        <img className="room-imager" src={reservation.room.imageUrl} alt="Habitación" />
       </div>
       <div className="details">
         <div className="header">
@@ -52,7 +38,7 @@ function BookingCard({ reservation }: ReservationProps) {
               <p>Fechas</p>
               <p className="icon">
                 <img src={CalendarIcon} alt="Calendario" />
-                {startDate} - {endDate}
+                {startDate.toString().split("T")[0]} - {endDate.toString().split("T")[0]}
               </p>
             </div>
             <div className="feature">

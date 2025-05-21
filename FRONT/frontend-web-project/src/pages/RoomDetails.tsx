@@ -4,7 +4,7 @@ import Logo from "../assets/Hotel Logo.svg";
 import RoomDetailsComponent from "../components/RoomDetails/RoomDetailsComponent";
 import { Reservation } from "./Reservation";
 import { getRoomForId } from "../api/services/rooms.service";
-import { Room } from "../models/rooms.model";
+import { amenityIcons, Room } from "../models/rooms.model";
 import { useApi } from "../api/hooks/useApi";
 import { useParams } from "react-router";
 import "./RoomDetails.css";
@@ -33,28 +33,16 @@ function RoomDetials() {
       ? `Solamente ${roomInfo.capacity} persona`
       : `Hasta ${roomInfo.capacity} personas`;
 
+  const amenities = room.amenity.map(a => ({
+    icon: amenityIcons[a.name] || "❓",
+    text: a.name
+  }))
+
   const roomDetails = {
     description: room.description,
-    politicas: {
-      items: [
-        "Check-in: 15:00 - 22:00",
-        "Check-out: hasta las 11:00",
-        "Cancelación gratuita hasta 48 horas antes",
-        "No se permiten mascotas",
-        "Prohibido fumar",
-      ],
-    },
-    comodidades: [
-          { icon: "🛏️", text: "Cama King Size" },
-          { icon: "🌆", text: "Vista panorámica" },
-          { icon: "🚿", text: "Ducha efecto lluvia" },
-          { icon: "☕", text: "Cafetera premium" },
-          { icon: "💼", text: "Zona de trabajo ergonómica" },
-          { icon: "📺", text: "TV Smart" },
-        ],
-
-    /* comodidades: room.amenity, */
-    image: 'https://cdn.pixabay.com/photo/2016/10/18/09/02/hotel-1749602_1280.jpg'
+    politicas: room.policies,
+    comodidades: amenities,
+    image: room.imageUrl,
   };
 
   return (
@@ -85,7 +73,7 @@ function RoomDetials() {
             className={`slider ${activeTab === false ? "active" : ""}`}
             onClick={() => setActiveTab(false)}
           >
-            Comentarios
+            Reservar
           </button>
 
         </div>

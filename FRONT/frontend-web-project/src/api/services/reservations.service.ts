@@ -27,3 +27,12 @@ export const createReservation = (props: ReservationResponse) => {
         controller,
     };
 };
+
+export const getUserReservations = () => {
+    const http = getHttpClient();   
+    const controller = loadAbort();
+    return {
+        call: http.get(`${BASE_URL}/reservations`, {signal: controller.signal}),
+        controller
+    }
+}

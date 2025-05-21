@@ -1,19 +1,20 @@
-export interface Client {
-    document: string;
-    typeDocument: string;
+export interface User {
+    id: number | undefined;
     name: string;
-    lastName: string;
-    address: string;
+    lastname: string;
     email: string;
-    countryId: number; 
-}
+    numberDocument: string;
+    phoneNumber: string;
+    password: string;
+  }
+  
 
-export const emptyClient: Client = {
-    document: "",
-    typeDocument: "", 
+export const empyUser: User = {
+    id: undefined,
     name: "",
-    lastName: "",
-    address: "",
+    lastname: "",
     email: "",
-    countryId: 0
-}
+    numberDocument: "",
+    phoneNumber: "",
+    password: ""
+  };

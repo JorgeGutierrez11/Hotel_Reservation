@@ -1,105 +1,22 @@
 import DataCard from "../components/ReservationCards/DataCard";
 import BookingCard from "../components/ReservationCards/BookingCard";
 import ProfileImage from "../assets/user-profile.svg";
+import { useEffect, useMemo, useState } from "react";
+import { Reservation } from "../models/reservation.model";
 import "./Profile.css";
-import { useState } from "react";
-
-interface Reservation {
-  id: number;
-  startDate: string;
-  endDate: string;
-  reservationStatus:
-  | "PENDING"
-  | "CONFIRMED"
-  | "CHECKED_IN"
-  | "COMPLETED"
-  | "CANCELED";
-  totalCost: number;
-  room: {
-    id: number;
-    roomNumber: string;
-    roomType:
-    | "SINGLE"
-    | "STANDARD"
-    | "SUITE"
-    | "DELUXE"
-    | "PENTHOUSE"
-    | "FAMILY";
-    capacity: number;
-  };
-}
+import { getUserReservations } from "../api/services/reservations.service";
+import { useApi } from "../api/hooks/useApi";
 
 function Profile() {
-  const reservations: Reservation[] = [
-    {
-      id: 1,
-      startDate: "2025-06-01",
-      endDate: "2025-06-05",
-      reservationStatus: "PENDING",
-      totalCost: 500.0,
-      room: {
-        id: 101,
-        roomNumber: "101A",
-        roomType: "STANDARD",
-        capacity: 2,
-      },
-    },
-    {
-      id: 2,
-      startDate: "2025-06-10",
-      endDate: "2025-06-15",
-      reservationStatus: "CONFIRMED",
-      totalCost: 1200.0,
-      room: {
-        id: 202,
-        roomNumber: "202B",
-        roomType: "DELUXE",
-        capacity: 3,
-      },
-    },
-    {
-      id: 3,
-      startDate: "2025-05-01",
-      endDate: "2025-05-03",
-      reservationStatus: "CHECKED_IN",
-      totalCost: 350.0,
-      room: {
-        id: 303,
-        roomNumber: "303C",
-        roomType: "SINGLE",
-        capacity: 1,
-      },
-    },
-    {
-      id: 4,
-      startDate: "2025-04-15",
-      endDate: "2025-04-20",
-      reservationStatus: "COMPLETED",
-      totalCost: 950.0,
-      room: {
-        id: 404,
-        roomNumber: "404D",
-        roomType: "FAMILY",
-        capacity: 5,
-      },
-    },
-    {
-      id: 5,
-      startDate: "2025-07-01",
-      endDate: "2025-07-05",
-      reservationStatus: "CANCELED",
-      totalCost: 0.0,
-      room: {
-        id: 505,
-        roomNumber: "505E",
-        roomType: "PENTHOUSE",
-        capacity: 4,
-      },
-    },
-  ];
+  const userCall = useMemo(() => getUserReservations(), []);
+  const { data: reservations, loading, error, fetch } = useApi<Reservation[]>(userCall);
+  useEffect(() => fetch(), [fetch]);
 
   const [bookingHistory, setBookingHistory] = useState(false);
 
+  if (loading) return <p>Cargando reservas...</p>;
+  if (error) return <p>Error al cargar las reservas.</p>;
+  if (!reservations) return <p>No se encontraron reservas disponibles</p>;
   return (
     <div className="profile-page" style={{ paddingTop: '100px' }}>
       <div className="profile-header">
@@ -116,13 +33,13 @@ function Profile() {
       <div className="slider-actions">
         <div className="slider-container">
           <button
-            className={`slider ${bookingHistory === true ? "active" : ""}`}
-            onClick={() => setBookingHistory(true)}>
+            className={`slider ${bookingHistory === false ? "active" : ""}`}
+            onClick={() => setBookingHistory(false)}>
             Reservas actuales
           </button>
           <button
-            className={`slider ${bookingHistory === false ? "active" : ""}`}
-            onClick={() => setBookingHistory(false)}
+            className={`slider ${bookingHistory === true ? "active" : ""}`}
+            onClick={() => setBookingHistory(true)}
           >
             Historial de reservas
           </button>
