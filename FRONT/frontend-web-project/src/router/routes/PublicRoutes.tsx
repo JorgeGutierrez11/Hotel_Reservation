@@ -7,7 +7,7 @@ import RoomDetials from "../../pages/RoomDetails"
 export const PublicRouters = () => {
     return (
         <RoutesWithNotFound>
-            <Route path="/" element={<Navigate to={"/shop"} />} />
+            <Route path="/" element={<Navigate to={"/home"} />} />
             <Route path="/home" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/roomDetails/:id" element={<RoomDetials/>} />
