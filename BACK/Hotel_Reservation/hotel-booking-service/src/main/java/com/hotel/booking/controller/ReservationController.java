@@ -2,6 +2,7 @@ package com.hotel.booking.controller;
 
 import com.hotel.booking.exception.NoSuchDataException;
 import com.hotel.booking.model.dto.ReservationDTO;
+import com.hotel.booking.model.dto.response.CheckResponse;
 import com.hotel.booking.model.entity.Reservation;
 import com.hotel.booking.service.ReservationService;
 import jakarta.validation.Valid;
@@ -101,17 +102,20 @@ public class ReservationController {
     }
 
     /*@PreAuthorize("hasRole('RECEPTIONIST')")*/
-    @PostMapping("/check-in/{id}")
-    public ResponseEntity<Void> checkIn(@PathVariable Long id) {
-        reservationService.checkIn(id);
-        return ResponseEntity.ok().build();
-    }
-    /*@PreAuthorize("hasRole('RECEPTIONIST')")*/
-    @PostMapping("/check-out/{id}")
-    public ResponseEntity<Void> checkOut(@PathVariable Long id) {
-        reservationService.checkOut(id);
-        return ResponseEntity.ok().build();
+    @PostMapping("/check-in")
+    public ResponseEntity<CheckResponse> checkIn(@RequestBody String bookingCode) {
+        return ResponseEntity.ok(reservationService.checkIn(bookingCode));
     }
 
+    /*@PreAuthorize("hasRole('RECEPTIONIST')")*/
+    @PostMapping("/check-out")
+    public ResponseEntity<CheckResponse> checkOut(@RequestBody String bookingCode) {
+        return ResponseEntity.ok(reservationService.checkOut(bookingCode));
+    }
+
+    @GetMapping("/check-out")
+    public ResponseEntity<List<CheckResponse>> getAllCheckOuts() {
+        return ResponseEntity.ok(reservationService.getUsersForCheckOut());
+    }
 
 }
