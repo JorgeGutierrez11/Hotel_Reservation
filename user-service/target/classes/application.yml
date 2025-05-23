@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/users_db
+    username: root
+    password: 1000depan
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Opciones: none, update, create, create-drop
+    show-sql: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+#logging:
+#  level:
+#    org.springframework: INFO
+#    org.hibernate.SQL: DEBUG
+
+#Propiedades para la secret y el generator (son inventadas)
+jwt:
+  secret_key: iojsonwebtokenimplsecurityDefaultSecretKeyBuilder7fe8ea47
+  generator: BACKEND-AUTH
