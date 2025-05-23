@@ -26,11 +26,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> {
                     //Definir rutas publicas
                     //Habitaciones
-                    request.requestMatchers(HttpMethod.GET, "/room/filter", "/room/getAll", "/room/*")
+                    request.requestMatchers(HttpMethod.GET, "/room/filter", "/room/getAll")
                             .permitAll();
 
                     //Comodidades - publicas
                     request.requestMatchers(HttpMethod.GET, "/amenity/getAll", "/amenity/{id}")
+                            .permitAll();
+
+                    //Checkout y checkin
+                    request.requestMatchers("/reservation/check-in", "/reservation/check-out")
                             .permitAll();
 
                     //Reservas -> se requiere autenticacion

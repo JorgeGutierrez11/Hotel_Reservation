@@ -70,4 +70,9 @@ public class UserService implements CrudService<User> {
         return this.save(u);
     }
 
+    public List<User> getUsersByIds(List<Long> ids) {
+        return userRepository.findAllByIdIn(ids)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+    }
+
 }

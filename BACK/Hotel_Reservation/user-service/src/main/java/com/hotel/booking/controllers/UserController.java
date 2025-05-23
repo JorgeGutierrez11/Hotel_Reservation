@@ -41,6 +41,11 @@ public class UserController {
         }
     }
 
+    @PostMapping("/by-ids")
+    public ResponseEntity<List<User>> getAllUsersByIds(@RequestBody List<Long> ids) {
+        return ResponseEntity.ok(userService.getUsersByIds(ids));
+    }
+
     @PostMapping("/create")
     public ResponseEntity<User> createUser(@Valid @RequestBody UserRequest user) {
         try {

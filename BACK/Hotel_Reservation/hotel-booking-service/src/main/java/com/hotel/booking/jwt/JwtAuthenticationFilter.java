@@ -34,7 +34,14 @@ import java.util.stream.Collectors;
  *     modificación, seguimos con la cadena de filtro y Spring se encargará de
  *     enviar la excepción.
  * </p>
- * <h2>Anotación @Component</h2>
+ * <h2>Anotación @Component</h2>{
+  "startDate": "2025-06-01T14:00:00",
+  "endDate": "2025-06-05T12:00:00",
+  "reservationStatus": "CONFIRMED",
+  "checkInDate": null,
+  "checkOutDate": null,
+  "roomId": 1
+}
  */
 @Component
 @RequiredArgsConstructor
