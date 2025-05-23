@@ -1,0 +1,57 @@
+Index: ../.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"f7039a60-b01a-48f6-bfba-b25c2a85b0c3\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/BACK/README.md\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BACK/hotel-booking-service/pom.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/config/GlobalExceptionHandler.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/controller/ReservationController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/controller/ReservationController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/exception/RoomUnavailableException.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/exception/RoomUnavailableException.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/model/dto/ReservationDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/model/dto/ReservationDTO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/model/entity/Reservation.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/model/entity/Reservation.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/model/enums/ReservationStatus.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/model/enums/ReservationStatus.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/repository/ReservationRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/repository/ReservationRepository.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/service/ReservationService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/java/com/hotel/booking/service/ReservationService.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/resources/application.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BACK/hotel-booking-service/src/main/resources/application.yml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/BACK/package-lock.json\" beforeDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;JorgeGutierrez11&quot;\n  }\n}</component>\n  <component name=\"GitToolBoxStore\">\n    <option name=\"recentBranches\">\n      <RecentBranches>\n        <option name=\"branchesForRepo\">\n          <list>\n            <RecentBranchesForRepo>\n              <option name=\"branches\">\n                <list>\n                  <RecentBranch>\n                    <option name=\"branchName\" value=\"Jorge\" />\n                    <option name=\"lastUsedInstant\" value=\"1747251789\" />\n                  </RecentBranch>\n                  <RecentBranch>\n                    <option name=\"branchName\" value=\"integration-local\" />\n                    <option name=\"lastUsedInstant\" value=\"1747251788\" />\n                  </RecentBranch>\n                </list>\n              </option>\n              <option name=\"repositoryRootUrl\" value=\"file://$PROJECT_DIR$\" />\n            </RecentBranchesForRepo>\n          </list>\n        </option>\n      </RecentBranches>\n    </option>\n  </component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/JorgeGutierrez11/Hotel_Reservation.git&quot;,\n    &quot;accountId&quot;: &quot;51027dd3-8abf-4049-ab07-c84648d3363f&quot;\n  }\n}</component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1\n}</component>\n  <component name=\"ProjectId\" id=\"2x6HVA0I6hJl3yAGLtjXHhRAMmV\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"git-widget-placeholder\": \"Jorge\",\n    \"last_opened_file_path\": \"/home/jorge/Documents/Desarrollo/Proyects/reservation hotel system/Hotel_Reservation/BACK\"\n  }\n}]]></component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"f7039a60-b01a-48f6-bfba-b25c2a85b0c3\" name=\"Changes\" comment=\"\" />\n      <created>1747251623739</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1747251623739</updated>\n    </task>\n    <servers />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../.idea/workspace.xml b/../.idea/workspace.xml
+--- a/../.idea/workspace.xml	(revision 9082dc228edc2b85f5b8a54cdf2554bd6ec9b4f6)
++++ b/../.idea/workspace.xml	(date 1748016595470)
+@@ -76,10 +76,20 @@
+     "ModuleVcsDetector.initialDetectionPerformed": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "RunOnceActivity.git.unshallow": "true",
+-    "git-widget-placeholder": "Jorge",
+-    "last_opened_file_path": "/home/jorge/Documents/Desarrollo/Proyects/reservation hotel system/Hotel_Reservation/BACK"
++    "git-widget-placeholder": "Integration-loca",
++    "last_opened_file_path": "/home/mauro/Trabajos/Java Projects/Projects/Hotel_Reservation/BACK/Hotel_Reservation",
++    "nodejs_package_manager_path": "npm",
++    "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
++  <component name="SharedIndexes">
++    <attachedChunks>
++      <set>
++        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
++        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
++      </set>
++    </attachedChunks>
++  </component>
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+       <changelist id="f7039a60-b01a-48f6-bfba-b25c2a85b0c3" name="Changes" comment="" />
+@@ -87,7 +97,22 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1747251623739</updated>
++      <workItem from="1748016295189" duration="116000" />
+     </task>
+     <servers />
+   </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+ </project>
+\ No newline at end of file

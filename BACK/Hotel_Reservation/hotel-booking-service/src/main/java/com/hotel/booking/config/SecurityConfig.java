@@ -33,17 +33,13 @@ public class SecurityConfig {
                     request.requestMatchers(HttpMethod.GET, "/amenity/getAll", "/amenity/{id}")
                             .permitAll();
 
-                    //Checkout y checkin
-                    request.requestMatchers("/reservation/check-in", "/reservation/check-out")
-                            .permitAll();
-
                     //Reservas -> se requiere autenticacion
                     request.requestMatchers("/reservation/reservations", "/reservation/create",
                                     "/reservation/{id}", "/reservation/update/{id}")
                             .hasRole("USER");
 
-                    request.requestMatchers(HttpMethod.POST, "/reservation/check-in/{id}", "reservation/check-out/{id}")
-                            .hasRole("RECEPTIONIST");
+                    request.requestMatchers("/reservation/check-in", "reservation/check-out")
+                            .hasAnyRole("RECEPTIONIST", "ADMIN");
 
                     request.requestMatchers(HttpMethod.GET, "/reservation/getAll")
                             .permitAll();
