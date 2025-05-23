@@ -6,14 +6,16 @@ import { useApi } from "../api/hooks/useApi";
 import axios from "axios";
 import { getRoomForId } from "../api/services/rooms.service";
 import { Room } from "../models/rooms.model";
+import { useNavigate } from "react-router";
 
 export const useReservation = () => {
+    const navegate = useNavigate();
     // Estados para el formulario
     const [reservationData, setReservationData] = useState<ReservationResponse>(empyReservationResponse);
     const [startValue, setStartValue] = useState<Dayjs | null>(null);
     const [endValue, setEndValue] = useState<Dayjs | null>(null);
 
-    // Obeter hatiacion por ID (GET)
+    // Obeter habitacion por ID (GET)
     const getRoomCall = useMemo(() => getRoomForId(reservationData.roomId), [reservationData.roomId]);
     const {
         data: room,
@@ -23,8 +25,9 @@ export const useReservation = () => {
     } = useApi<Room>(getRoomCall);
     useEffect(() => fetchRoom(), [fetchRoom]);
 
-    // Obtener todas las reservaciones (GET)
-    const getReservationsCall = useMemo(() => getAllReservation(), []); //  Aqui puedo hacer que por el cambio el apiCall el useEffect renderice lo que quiero
+    // Obtener todas las reservaciones de la habitacion
+    console.log('soy el user id: ',reservationData.roomId)
+    const getReservationsCall = useMemo(() => getAllReservation(reservationData.roomId), [reservationData.roomId]); //  Aqui puedo hacer que por el cambio el apiCall el useEffect renderice lo que quiero
     const {
         data: reservations,
         loading: loadingReservations,
@@ -32,6 +35,7 @@ export const useReservation = () => {
         fetch: fetchReservations
     } = useApi<ReservationProps[]>(getReservationsCall);
     useEffect(() => fetchReservations(), [fetchReservations]);
+    console.log("Soly la reserva de la habitacion 3: ", reservations)
 
     // Función para crear una nueva reserva (POST)
     const handleSubmit = async (e: React.FormEvent) => {
@@ -63,6 +67,7 @@ export const useReservation = () => {
         try {
             const response = await call;
             console.log("Reserva creada:", response.data);
+            navegate("/profile");
             fetchReservations();
         } catch (err: any) {
             if (axios.isCancel(err)) {

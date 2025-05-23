@@ -131,8 +131,8 @@
 
 .buttons {
     position: relative;
-    bottom: 16px;
-    left: 55px;
+    bottom: 5px;
+    left: 15px;
     display: flex;
     justify-content: flex-end;
     gap: 0.5rem;
