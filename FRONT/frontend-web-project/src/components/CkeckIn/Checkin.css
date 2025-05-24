@@ -1,0 +1,109 @@
+.checkin-form-box {
+    background-color: white;
+    width: 90%;
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 30px 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.checkin-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.checkin-instruction {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.checkin-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px 0 5px 0;
+    box-sizing: border-box;
+    transition: border 0.2s ease-in-out;
+}
+
+.checkin-input:focus {
+    border-color: #a0e8e2;
+    outline: none;
+}
+
+.checkin-small {
+    display: block;
+    color: #888;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+}
+
+.checkin-button {
+    background-color: #222;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.checkin-button:hover {
+    background-color: #444;
+}
+
+.checkin-success-box {
+    background-color: white;
+    width: 90%;
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 30px 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.checkin-success-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.checkin-success-message {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.checkin-info-box {
+    background-color: #f5f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    margin: 20px 0;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.checkin-info-box p {
+    margin: 8px 0;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .checkin-form-box,
+    .checkin-success-box {
+        padding: 20px 15px;
+    }
+}

@@ -43,7 +43,7 @@ export const Home = () => {
         {
             "id": 5,
             "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80",
-            "title": "Restaurante Farm-to-Table"
+            "title": "Restaurante Farm-to"
         }
     ];
 
@@ -130,7 +130,7 @@ export const Home = () => {
                 </div>
             </div>
             <footer className="footer-content">
-                esto es el footer
+                <p>© 2025 Hotel Management System</p>
             </footer>
         </div>
     )

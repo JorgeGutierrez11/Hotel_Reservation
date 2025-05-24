@@ -1,12 +1,21 @@
-import { Navigate, Route } from "react-router-dom"
+import { Route } from "react-router-dom"
 import { RoutesWithNotFound } from "../RoutesWithNotFound"
-import { Login } from "../../pages/Login"
+import { Check } from "../../pages/Check.tsx"
+import { RoleGuard } from "../guards/RoleGuard.tsx"
+import Profile from "../../pages/Profile.tsx"
 
-export const  PrivateRouter = () => {
+
+export const PrivateRouter = () => {
     return (
         <RoutesWithNotFound>
-            <Route path="/" element={<Navigate to={"/dashboard"}/>}/>
-            <Route path="/dashboard" element={<Login/>}/>
+            <Route path="/profile" element={<Profile />} />
+
+                <Route path="/reception" element={<Check />} />
+            <Route element={<RoleGuard allowedRoles={['ADMIN']} />}>
+            </Route>
+
+           {/*  <Route element={<RoleGuard allowedRoles={['USER']} />}>
+            </Route> */}
         </RoutesWithNotFound>
     )
 }

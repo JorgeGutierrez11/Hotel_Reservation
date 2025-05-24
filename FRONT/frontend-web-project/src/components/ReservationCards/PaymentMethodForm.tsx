@@ -2,7 +2,6 @@ import "./PaymentMethodForm.css"
 import React, { useState } from 'react';
 import './PaymentMethodForm.css';
 import { Dayjs } from "dayjs";
-import { useNavigate } from "react-router";
 
 interface PaymentMethodFormProps {
     endValue: Dayjs | null;
@@ -13,7 +12,7 @@ interface PaymentMethodFormProps {
 
 export const PaymentMethodForm = ({ endValue, startValue, onSubmit, roomStatus }: PaymentMethodFormProps) => {
     const [method, setMethod] = useState<'card' | 'paypal'>('card');
-    const selectDate: boolean = roomStatus === "MAINTENANCE" || !endValue;
+    const selectDate: boolean = roomStatus === "MAINTENANCE" || !startValue || !endValue;
 
     return (
         <div className="payment-method-form">

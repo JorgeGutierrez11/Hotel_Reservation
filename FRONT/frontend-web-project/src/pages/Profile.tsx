@@ -8,15 +8,11 @@ import { getUserReservations } from "../api/services/reservations.service";
 import { useApi } from "../api/hooks/useApi";
 
 function Profile() {
-  const [bookingHistory, setBookingHistory] = useState(false);
-
-  /* Cargo la informacion del usuario al que pertenece el token */
-  /* const userCall = useMemo(() => )
- */
-  /* Cargo las reservas del usuario al que pertenece el token */
-  const reservationCall = useMemo(() => getUserReservations(), []);
-  const { data: reservations, loading, error, fetch } = useApi<Reservation[]>(reservationCall);
+  const userCall = useMemo(() => getUserReservations(), []);
+  const { data: reservations, loading, error, fetch } = useApi<Reservation[]>(userCall);
   useEffect(() => fetch(), [fetch]);
+
+  const [bookingHistory, setBookingHistory] = useState(false);
 
   if (loading) return <p>Cargando reservas...</p>;
   if (error) return <p>Error al cargar las reservas.</p>;
@@ -50,29 +46,15 @@ function Profile() {
         </div>
       </div>
       <div className="bookingcard-container">
-        {reservations ? (
-          (() => {
-            const reservationList = reservations.filter((reservation) =>
-              bookingHistory
-                ? reservation.reservationStatus
-                : ["PENDING", "CONFIRMED", "CHECKED_IN"].includes(reservation.reservationStatus)
-            );
-
-            return reservationList.length > 0 ? (
-              reservationList.slice().reverse().map((reservation) => (
-                <>
-                  {console.log("soy el estado de la reserva", reservation.reservationStatus)}
-                  <BookingCard key={reservation.id} reservation={reservation} />
-                </>
-              ))
-            ) : (
-              <div>No hay reservas que coincidan con el filtro</div>
-            );
-          })()
-        ) : (
-          <div>No hay reservas a mostrar</div>
-        )}
-
+        {reservations
+          .filter((reservation) =>
+            bookingHistory
+              ? !["PENDING", "CONFIRMED", "CHECKED_IN"].includes(reservation.reservationStatus)
+              : ["PENDING", "CONFIRMED", "CHECKED_IN"].includes(reservation.reservationStatus)
+          )
+          .map((reservation) => (
+            <BookingCard key={reservation.id} reservation={reservation} />
+          ))}
       </div>
     </div>
   );

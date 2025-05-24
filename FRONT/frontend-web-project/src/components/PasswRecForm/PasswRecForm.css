@@ -1,0 +1,172 @@
+.recuperar {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.recuperar__form-box {
+  width: 100%;
+  max-width: 360px;
+  background: #fff;
+  padding: 16px 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.recuperar__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.recuperar__logo {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background-color: #e9f0f8;
+  padding: 6px;
+  object-fit: contain;
+}
+
+.recuperar__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.recuperar__form {
+  text-align: left;
+}
+
+.recuperar__label {
+  display: block;
+  margin-bottom: 3px;
+  font-weight: 600;
+  color: #444;
+  font-size: 13px;
+}
+
+.recuperar__input {
+  width: 100%;
+  padding: 7px 9px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13.5px;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.recuperar__input:focus {
+  border-color: #3498db;
+  outline: none;
+  background-color: #fff;
+}
+
+.recuperar__btn-primary {
+  width: 100%;
+  padding: 10px;
+  background-color: #1c2a5a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 12px;
+}
+
+.recuperar__btn-primary:hover {
+  background-color: #122146;
+}
+
+.recuperar__separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px 0;
+  color: #999;
+  font-size: 12.5px;
+}
+
+.recuperar__line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ddd;
+  border: none;
+}
+
+.recuperar__separator-text {
+  white-space: nowrap;
+}
+
+.recuperar__btn-secondary {
+  width: 100%;
+  padding: 8px;
+  background-color: #a3c9f5;
+  border: none;
+  color: white;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.recuperar__btn-secondary:hover {
+  background-color: #3498db;
+}
+
+.recuperar__terms {
+  font-size: 11.5px;
+  color: #666;
+  margin-top: 8px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.recuperar__terms a {
+  color: #3498db;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.recuperar__terms a:hover {
+  color: #2471a3;
+}
+
+@media screen and (max-width: 420px) {
+  .recuperar__form-box {
+    padding: 14px 18px;
+  }
+
+  .recuperar__title {
+    font-size: 16.5px;
+  }
+
+  .recuperar__input {
+    font-size: 12.5px;
+  }
+
+  .recuperar__btn-primary {
+    font-size: 13px;
+    padding: 9px;
+  }
+
+  .recuperar__btn-secondary {
+    font-size: 12.5px;
+    padding: 7px;
+  }
+}

@@ -1,45 +1,29 @@
 import { useState } from "react";
-import { loginUser } from "../api/services/auth.service";
-import { useNavigate } from "react-router-dom";
-
+import LoginForm from "../components/LogForm/LogForm.tsx";
+import SignForm from "../components/SignForm/SignForm.tsx";
+import RecoverPasswordForm from "../components/PasswRecForm/PasswRecForm.tsx";
+import { TypeDocument } from '../models/typeDoc.enum';
+const typeDocumentOptions = [
+  { value: TypeDocument.CC, label: 'Cédula de Ciudadanía' },
+  { value: TypeDocument.CE, label: 'Cédula de Extranjería' },
+  { value: TypeDocument.PPP, label: 'Permiso por Protección Permanente' },
+  { value: TypeDocument.PPT, label: 'Permiso por Protección Temporal' },
+];
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [currentForm, setCurrentForm] = useState<'login' | 'signup' | 'recover'>('login'); // Estado para manejar el formulario actual
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await loginUser(email, password);
-      navigate("/private/dashboard");
-    } catch (err: any) {
-      if (err.response && err.response.status === 401) {
-        alert("Credenciales incorrectas");
-      } else if (err.message === "Network Error") {
-        alert("Error de red: Verifica tu conexión o el backend");
-      } else {
-        alert("Ocurrió un error inesperado");
-        console.error("Login error:", err);
-      }
-    }
+  // Función para cambiar el formulario actual
+  const handleSwitchForm = (form: 'login' | 'signup' | 'recover') => {
+    setCurrentForm(form);
   };
-  
 
   return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="email"
-        placeholder="Correo"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Ingresar</button>
-    </form>
+      <div>
+        {/* Renderiza el formulario basado en el estado */}
+        {currentForm === 'login' && <LoginForm onSwitchForm={handleSwitchForm} />}
+        {currentForm === 'signup' && <SignForm onSwitchForm={handleSwitchForm} typeDocumentOptions={typeDocumentOptions}
+        />}
+        {currentForm === 'recover' && <RecoverPasswordForm onSwitchForm={handleSwitchForm} />}
+      </div>
   );
 };

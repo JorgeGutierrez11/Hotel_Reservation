@@ -1,0 +1,127 @@
+.signup__form-box {
+    background-color: #fff;
+    padding: 25px 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.signup__header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup__logo {
+    max-width: 60px;
+    margin-bottom: 10px;
+}
+
+.signup__title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: #2c3e50;
+}
+
+.signup__input,
+.signup__btn,
+.signup__btn-secondary,
+.signup__input::placeholder {
+    font-size: 14px;
+}
+
+.signup__input {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 5px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.signup__password-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.signup__toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #999;
+    font-size: 14px;
+}
+
+.signup__btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #1c2a5a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.signup__btn:hover {
+    background-color: #122146;
+}
+
+.signup__btn-secondary {
+    width: 100%;
+    padding: 10px;
+    background-color: #d9d9d9;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.signup__btn-secondary:hover {
+    background-color: #c0c0c0;
+}
+
+.signup__separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 8px;
+    font-size: 13px;
+    color: #888;
+}
+
+.signup__separator-line {
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+    margin: 0;
+}
+
+.signup__terms {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 15px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.signup__terms a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.signup__terms a:hover {
+    color: #2471a3;
+}

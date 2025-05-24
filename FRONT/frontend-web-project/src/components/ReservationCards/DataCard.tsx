@@ -23,7 +23,7 @@ function DataCard(/* { userData }: DataCardProps */) {
     ];
 
     /* llamo a la api y seteo los datos del user */
-/*useEffect(() => {
+/*     useEffect(() => {
         setFormData(userData);
         setCopyFormData(userData);
     }, [userData]) */
