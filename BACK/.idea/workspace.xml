@@ -6,21 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="9f6032fe-bbc3-40b5-847f-67d57dd50878" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/controller/ReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/service/CheckService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/service/CheckService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/service/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/service/UserClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/service/UserClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/java/com/hotel/booking/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/java/com/hotel/booking/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/java/com/hotel/booking/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/java/com/hotel/booking/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/java/com/hotel/booking/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/java/com/hotel/booking/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -42,13 +41,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.GatewayApplication.executor": "Run",
     "Spring Boot.HotelBookingServiceApplication.executor": "Debug",
     "Spring Boot.UserServiceApplication.executor": "Run",
     "git-widget-placeholder": "Integration-loca",
-    "last_opened_file_path": "/home/mauro/Trabajos/Java Projects/Projects/Hotel_Reservation/BACK",
+    "last_opened_file_path": "/home/mauro/Trabajos/Java Projects/Projects/Hotel_Reservation",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -100,7 +103,7 @@
     </attachedChunks>
   </component>
   <component name="StructureViewState">
-    <option name="selectedTab" value="Logical" />
+    <option name="selectedTab" value="Physical" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -112,7 +115,8 @@
       <workItem from="1748016454632" duration="2290000" />
       <workItem from="1748030100092" duration="68000" />
       <workItem from="1748182795588" duration="286000" />
-      <workItem from="1748183167233" duration="3732000" />
+      <workItem from="1748183167233" duration="7130000" />
+      <workItem from="1748200987597" duration="63000" />
     </task>
     <servers />
   </component>
@@ -129,16 +133,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/controller/ReservationController.java</url>
-          <line>120</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

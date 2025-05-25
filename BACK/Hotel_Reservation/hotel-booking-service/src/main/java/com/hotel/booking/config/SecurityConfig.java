@@ -38,7 +38,7 @@ public class SecurityConfig {
                                     "/reservation/get/{id}/", "/reservation/update/{id}")
                             .hasRole("USER");
 
-                    request.requestMatchers("/reservation/check-in", "reservation/check-out")
+                    request.requestMatchers("/reservation/check-in", "/reservation/check-out")
                             .hasAnyRole("RECEPTIONIST", "ADMIN");
 
                     request.requestMatchers(HttpMethod.GET, "/reservation/getAll")
