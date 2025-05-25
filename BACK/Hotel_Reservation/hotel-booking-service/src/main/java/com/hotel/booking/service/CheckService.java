@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 @Service
 public class CheckService {
 
-    private final UserClientService userClientService;
+    private final UserClient userClientService;
 
-    public CheckService(UserClientService userClientService) {
+    public CheckService(UserClient userClientService) {
         this.userClientService = userClientService;
     }
 
@@ -31,13 +31,13 @@ public class CheckService {
      * @param reservations La lista de reservas que están activas y que están listas para hacer check-out
      * @return Una lista de {@code UserRequest} que son los usuarios que están actualmente en el hotel
      */
-    public List<UserRequest> getUsersForCheckOut(List<Reservation> reservations) {
+    public List<UserRequest> getUsersForCheckOut(List<Reservation> reservations, String authHeader) {
 
         List<Long> ids = reservations.stream()
                 .map(Reservation::getCustomerId)
                 .collect(Collectors.toList());
 
-        return userClientService.findAllUsersByIds(ids);
+        return userClientService.findAllUsersByIds(ids, authHeader);
     }
 
 }

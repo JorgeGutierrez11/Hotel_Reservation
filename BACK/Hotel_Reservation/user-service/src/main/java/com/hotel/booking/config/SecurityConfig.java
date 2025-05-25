@@ -29,11 +29,20 @@ public class SecurityConfig {
                     //Definir rutas públicas como Login y Register
                     request.requestMatchers("/auth/**").permitAll();
 
+                    //Servicio de Email, envio de código de reversación
                     request.requestMatchers("/api/email/booking-code").permitAll();
 
                     //Solo puede hacer estas peticiones un ADMIN
-                    request.requestMatchers("/users/**")
-                            .permitAll();
+                    request.requestMatchers("/users/getAll", "/users/user/**",
+                                    "/users/create", "/users/delete/**")
+                            .hasRole("ADMIN");
+
+                    //Puede acceder cualquiera de los 3 roles
+                    request.requestMatchers("/users/getUser/info")
+                            .hasAnyRole("USER", "ADMIN", "RECEPTIONIST");
+
+                    //Solo personal del hotel
+                    request.requestMatchers("/users/by-ids").hasAnyRole("RECEPTIONIST", "ADMIN");
 
                     //Para las demás rutas se requiere atenticaión
                     request.anyRequest().authenticated();

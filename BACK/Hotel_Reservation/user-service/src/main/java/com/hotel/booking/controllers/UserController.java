@@ -41,6 +41,11 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getUser/info")
+    public ResponseEntity<User> getInfoUser() {
+        return ResponseEntity.ok(userService.getInfoUser());
+    }
+
     @PostMapping("/by-ids")
     public ResponseEntity<List<User>> getAllUsersByIds(@RequestBody List<Long> ids) {
         return ResponseEntity.ok(userService.getUsersByIds(ids));

@@ -15,11 +15,11 @@ import java.util.UUID;
 @Service
 public class EmailService {
 
+    private static final String EMAIL_SERVICE_URL = "http://localhost:3000/send-email";
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     public String sendBookingCode(String email) {
 
-        String url = "http://localhost:3000/send-email";
         String to = email;
         String subject = "Código de verificación | Check-in";
         String code = UUID.randomUUID().toString().substring(30).toUpperCase();
@@ -33,7 +33,11 @@ public class EmailService {
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity(
+                    EMAIL_SERVICE_URL,
+                    request,
+                    String.class);
+
             LOGGER.info("Email sent: {}", response.getBody());
         } catch (Exception e) {
             LOGGER.error("Email sent error: {}", e.getMessage());
