@@ -16,6 +16,4 @@ public class UserRequest {
     private String typeDocument;
     private String numberDocument;
     private String phoneNumber;
-    private String password;
-    private String role;
 }

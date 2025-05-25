@@ -1,12 +1,14 @@
 package com.hotel.booking.services;
 
 import com.hotel.booking.exceptions.UserNotFoundException;
+import com.hotel.booking.jwt.JwtService;
 import com.hotel.booking.models.dtos.request.UserRequest;
 import com.hotel.booking.models.entities.User;
 import com.hotel.booking.models.enums.Role;
 import com.hotel.booking.respositories.UserRepository;
 import com.hotel.booking.services.impl.CrudService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -73,6 +75,17 @@ public class UserService implements CrudService<User> {
     public List<User> getUsersByIds(List<Long> ids) {
         return userRepository.findAllByIdIn(ids)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
+    }
+
+    public User getInfoUser() {
+        return findUserByEmail(getEmailFromPrincipal());
+    }
+
+    private String getEmailFromPrincipal() {
+        User u = (User)
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return u.getEmail();
     }
 
 }

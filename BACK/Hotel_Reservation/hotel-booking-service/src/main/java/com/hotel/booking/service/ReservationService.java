@@ -14,20 +14,15 @@ import com.hotel.booking.repository.RoomRepository;
 import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,19 +31,18 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
     private final CheckService checkService;
-
-    private final RestTemplate restTemplate;
+    private final BookingCodeClient bookingCodeClient;
 
     private static final Logger log = LoggerFactory.getLogger(ReservationService.class);
 
     public ReservationService(ReservationRepository reservationRepository,
                               RoomRepository roomRepository,
-                              RestTemplate restTemplate,
-                              CheckService checkService) {
+                              CheckService checkService,
+                              BookingCodeClient bookingCodeClient) {
         this.reservationRepository = reservationRepository;
         this.roomRepository = roomRepository;
-        this.restTemplate = restTemplate;
         this.checkService = checkService;
+        this.bookingCodeClient = bookingCodeClient;
     }
 
     /* Validaciones y Logica de calcfindReservationsByUserulo */
@@ -156,14 +150,8 @@ public class ReservationService {
         long days = calculateDays(reservationDTO.getStartDate(), reservationDTO.getEndDate());
         BigDecimal totalPrice = calculateTotalCost(price, days, taxes);
 
-        //Enviar Email
-        String url = "http://localhost:8080/api/email/booking-code";
-        Map<String, String> body = new HashMap<>();
-        body.put("email", getEmailFromPrincipal());
-
-        HttpEntity<Map<String, String>> request = new HttpEntity<>(body);
-
-        String bookingCode = restTemplate.postForEntity(url, request, String.class).getBody();
+        //Generar código de reservación
+        String bookingCode = bookingCodeClient.sendBookingCode(getEmailFromPrincipal());
 
         Reservation reservation = Reservation.builder()
                 .customerId(getUserIdFromClaims())
@@ -202,7 +190,7 @@ public class ReservationService {
         return reservation;
     }
 
-    public CheckResponse checkIn(String bookingCode) {
+    public CheckResponse checkIn(String bookingCode, String authHeader) {
         Reservation reservation = findByBookingCode(bookingCode);
         Room room = reservation.getRoom();
 
@@ -226,10 +214,10 @@ public class ReservationService {
         roomRepository.save(room);
         reservationRepository.save(reservation);
 
-        return getCheck(bookingCode);
+        return getCheck(bookingCode, authHeader);
     }
 
-    public CheckResponse checkOut(String bookingCode) {
+    public CheckResponse checkOut(String bookingCode, String authHeader) {
         Reservation reservation = findByBookingCode(bookingCode);
         Room room = reservation.getRoom();
 
@@ -247,25 +235,28 @@ public class ReservationService {
         roomRepository.save(room);
         reservationRepository.save(reservation);
 
-        return getCheck(bookingCode);
+        return getCheck(bookingCode, authHeader);
     }
 
     /**
      * <p>
      *     Mostrar todos los usuarios que están en el hotel
      * </p>
+     * @param authHeader Encabezado donde viene el token
      * @return Una lista {@code List<CheckResponse>} para el Recepcionista
      */
-    public List<CheckResponse> getUsersForCheckOut() {
+    public List<CheckResponse> getUsersForCheckOut(String authHeader) {
         List<Reservation> reservations = findByStatus(ReservationStatus.CONFIRMED);
 
-        List<UserRequest> users = checkService.getUsersForCheckOut(reservations);
+        List<UserRequest> users = checkService.getUsersForCheckOut(reservations, authHeader);
+
+        if(users.isEmpty()) {
+            throw new NoSuchDataException("No hay usuarios encontrados");
+        }
 
         List<CheckResponse> responses = new ArrayList<>();
 
-        for (int i = 0; i < users.size(); i++) {
-
-            UserRequest user = users.get(i);
+        for (UserRequest user : users) {
 
             Reservation reservation = reservations.stream()
                     .filter(r -> r.getCustomerId().equals(user.getId()))
@@ -293,8 +284,8 @@ public class ReservationService {
         return responses;
     }
 
-    private CheckResponse getCheck(String bookingCode) {
-        return getUsersForCheckOut().stream()
+    private CheckResponse getCheck(String bookingCode, String authHeader) {
+        return getUsersForCheckOut(authHeader).stream()
                 .filter(c -> c.getBookingCode().equals(bookingCode))
                 .findFirst()
                 .get();

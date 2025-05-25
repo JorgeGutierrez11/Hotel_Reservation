@@ -1,0 +1,41 @@
+Index: hotel-booking-service/src/main/java/com/hotel/booking/config/SecurityConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.hotel.booking.config;\n\nimport com.hotel.booking.jwt.JwtAuthenticationFilter;\nimport lombok.RequiredArgsConstructor;\nimport org.springframework.context.annotation.Bean;\nimport org.springframework.context.annotation.Configuration;\nimport org.springframework.http.HttpMethod;\nimport org.springframework.security.config.annotation.web.builders.HttpSecurity;\nimport org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;\nimport org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;\nimport org.springframework.security.config.http.SessionCreationPolicy;\nimport org.springframework.security.web.SecurityFilterChain;\nimport org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;\n\n@Configuration\n@EnableWebSecurity\n@RequiredArgsConstructor\npublic class SecurityConfig {\n\n    private final JwtAuthenticationFilter jwtAuthenticationFilter;\n\n    @Bean\n    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {\n        return http\n                .csrf(AbstractHttpConfigurer::disable)\n                .authorizeHttpRequests(request -> {\n                    //Definir rutas publicas\n                    //Habitaciones\n                    request.requestMatchers(HttpMethod.GET, \"/room/filter\", \"/room/getAll\", \"/room/*\")\n                            .permitAll();\n\n                    //Comodidades - publicas\n                    request.requestMatchers(HttpMethod.GET, \"/amenity/getAll\", \"/amenity/{id}\")\n                            .permitAll();\n\n                    //Reservas -> se requiere autenticacion\n                    request.requestMatchers(\"/reservation/reservations\", \"/reservation/create\",\n                                    \"/reservation/{id}\", \"/reservation/update/{id}\")\n                            .hasRole(\"USER\");\n\n                    request.requestMatchers(HttpMethod.POST, \"/reservation/check-in/{id}\", \"reservation/check-out/{id}\")\n                            .hasRole(\"RECEPTIONIST\");\n\n                    request.requestMatchers(HttpMethod.GET, \"/reservation/getAll\")\n                            .permitAll();\n                    /*.hasRole(\"ADMIN\");*/\n\n                    request.anyRequest().hasRole(\"ADMIN\");\n                })\n                .sessionManagement(session ->\n                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))\n                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)\n                .build();\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/hotel-booking-service/src/main/java/com/hotel/booking/config/SecurityConfig.java b/hotel-booking-service/src/main/java/com/hotel/booking/config/SecurityConfig.java
+--- a/hotel-booking-service/src/main/java/com/hotel/booking/config/SecurityConfig.java	(revision b99b11ebe4c85459662253668ed1ab06dc819680)
++++ b/hotel-booking-service/src/main/java/com/hotel/booking/config/SecurityConfig.java	(date 1747854425676)
+@@ -33,6 +33,10 @@
+                     request.requestMatchers(HttpMethod.GET, "/amenity/getAll", "/amenity/{id}")
+                             .permitAll();
+ 
++                    //reservaciones - publicas
++                    request.requestMatchers(HttpMethod.GET, "/reservation/filter/*")
++                            .permitAll();
++
+                     //Reservas -> se requiere autenticacion
+                     request.requestMatchers("/reservation/reservations", "/reservation/create",
+                                     "/reservation/{id}", "/reservation/update/{id}")
+Index: user-service/src/main/java/com/hotel/booking/config/SecurityConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.hotel.booking.config;\n\nimport com.hotel.booking.jwt.JwtAuthenticationFilter;\nimport lombok.RequiredArgsConstructor;\nimport org.springframework.context.annotation.Bean;\nimport org.springframework.context.annotation.Configuration;\nimport org.springframework.security.authentication.AuthenticationProvider;\nimport org.springframework.security.config.Customizer;\nimport org.springframework.security.config.annotation.web.builders.HttpSecurity;\nimport org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;\nimport org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;\nimport org.springframework.security.config.http.SessionCreationPolicy;\nimport org.springframework.security.web.SecurityFilterChain;\nimport org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;\n\n@Configuration\n@EnableWebSecurity\n@RequiredArgsConstructor\npublic class SecurityConfig {\n\n    private final AuthenticationProvider authenticationProvider;\n    private final JwtAuthenticationFilter jwtAuthenticationFilter;\n\n    @Bean\n    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {\n        return http\n                .csrf(AbstractHttpConfigurer::disable)\n                .authorizeHttpRequests(request -> {\n                    //Definir rutas públicas como Login y Register\n                    request.requestMatchers(\"/auth/**\").permitAll();\n\n                    //Solo puede hacer estas peticiones un ADMIN\n                    request.requestMatchers(\"/users/**\")\n                            .hasRole(\"ADMIN\");\n\n                    request.requestMatchers(\"/users/user/**\", \"/users/update\")\n                            .hasAnyRole(\"ADMIN\", \"USER\");\n\n                    //Para las demás rutas se requiere atenticaión\n                    request.anyRequest().authenticated();\n                })\n                .sessionManagement(session -> {\n                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);\n                })\n                .authenticationProvider(authenticationProvider)\n                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)\n                .build();\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/user-service/src/main/java/com/hotel/booking/config/SecurityConfig.java b/user-service/src/main/java/com/hotel/booking/config/SecurityConfig.java
+--- a/user-service/src/main/java/com/hotel/booking/config/SecurityConfig.java	(revision b99b11ebe4c85459662253668ed1ab06dc819680)
++++ b/user-service/src/main/java/com/hotel/booking/config/SecurityConfig.java	(date 1747853950517)
+@@ -31,9 +31,6 @@
+ 
+                     //Solo puede hacer estas peticiones un ADMIN
+                     request.requestMatchers("/users/**")
+-                            .hasRole("ADMIN");
+-
+-                    request.requestMatchers("/users/user/**", "/users/update")
+                             .hasAnyRole("ADMIN", "USER");
+ 
+                     //Para las demás rutas se requiere atenticaión

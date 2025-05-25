@@ -35,7 +35,7 @@ public class SecurityConfig {
 
                     //Reservas -> se requiere autenticacion
                     request.requestMatchers("/reservation/reservations", "/reservation/create",
-                                    "/reservation/{id}", "/reservation/update/{id}")
+                                    "/reservation/get/{id}/", "/reservation/update/{id}")
                             .hasRole("USER");
 
                     request.requestMatchers("/reservation/check-in", "reservation/check-out")

@@ -41,7 +41,7 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.filterReservationsByRoom(roomId));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<?> finById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(reservationService.findById(id));
@@ -103,19 +103,32 @@ public class ReservationController {
 
     /*@PreAuthorize("hasRole('RECEPTIONIST')")*/
     @PostMapping("/check-in")
-    public ResponseEntity<CheckResponse> checkIn(@RequestBody String bookingCode) {
-        return ResponseEntity.ok(reservationService.checkIn(bookingCode));
+    public ResponseEntity<CheckResponse> checkIn(@RequestBody String bookingCode,
+                                                 @RequestHeader("Authorization") String authHeader) {
+        return ResponseEntity.ok(reservationService.checkIn(bookingCode, authHeader));
     }
 
     /*@PreAuthorize("hasRole('RECEPTIONIST')")*/
     @PostMapping("/check-out")
-    public ResponseEntity<CheckResponse> checkOut(@RequestBody String bookingCode) {
-        return ResponseEntity.ok(reservationService.checkOut(bookingCode));
+    public ResponseEntity<CheckResponse> checkOut(@RequestBody String bookingCode,
+                                                  @RequestHeader("Authorization") String authHeader) {
+        return ResponseEntity.ok(reservationService.checkOut(bookingCode, authHeader));
     }
 
     @GetMapping("/check-out")
-    public ResponseEntity<List<CheckResponse>> getAllCheckOuts() {
-        return ResponseEntity.ok(reservationService.getUsersForCheckOut());
+    public ResponseEntity<List<CheckResponse>> getAllCheckOuts(
+            @RequestHeader("Authorization") String authHeader) {
+
+        try {
+            return ResponseEntity.ok(reservationService.getUsersForCheckOut(authHeader));
+        } catch (NoSuchDataException err) {
+            LOGGER.warn(err.getMessage());
+            return ResponseEntity.notFound().build();
+        } catch (Exception err) {
+            LOGGER.error(err.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
+
     }
 
 }
