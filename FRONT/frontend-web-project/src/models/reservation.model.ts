@@ -1,5 +1,5 @@
 import { Room } from "./rooms.model";
-
+import { RoomType } from "./room-types.model";
 export interface ReservationProps {
   id: number;
   startDate: string;
@@ -48,4 +48,21 @@ export interface Reservation {
   checkInDate: string | null;
   checkOutDate: string | null;
   room: Room;
+}
+// reservation.model.ts
+
+
+
+export interface CheckResponse {
+  bookingCode: string;
+  name: string;
+  email: string;
+  phone: string;
+  numberDocument: string;
+  roomNumber: string;
+  roomType: RoomType;
+  days: number;
+  totalCost: number;
+  checkOutDate: string; // Date in ISO string format
+  checkInDate: string;  // Date in ISO string format
 }

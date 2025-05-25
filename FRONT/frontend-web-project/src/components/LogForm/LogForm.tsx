@@ -29,8 +29,11 @@ const LoginForm: React.FC<Props> = ({ onSwitchForm }) => {
                 navigate("/private/reception")
             } else if (role === "USER") {
                 alert("¡¡Bienvenido!!");
-            } else {
-                alert("Rol no reconocido");
+                navigate("/private/profile");
+            } else if(role === "ADMIN") {
+                navigate("/private/reception");
+            }else {
+                alert("Role not found")
             }
             setState(false);
         } catch (err: any) {

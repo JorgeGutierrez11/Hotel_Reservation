@@ -1,9 +1,50 @@
 import { ReservationProps, ReservationResponse, ReservationToCheckOut } from "../../models/reservation.model";
+import { CheckResponse } from "../../models/reservation.model";
 import { UseApiCall } from "../models/useApi.model";
 import { loadAbort } from "../utilities/loadAbort.utility";
 import { getHttpClient } from "./axios.service";
 
 const BASE_URL = "/reservation";
+
+// Servicio para realizar check-in
+export const checkIn = (bookingCode: string): UseApiCall<CheckResponse> => {
+    const http = getHttpClient();
+    const controller = loadAbort();
+    return {
+        call: http.post<CheckResponse>(`${BASE_URL}/check-in`, bookingCode, {
+            signal: controller.signal,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }),
+        controller,
+    };
+};
+
+// Servicio para realizar check-out
+export const checkOut = (bookingCode: string): UseApiCall<CheckResponse> => {
+    const http = getHttpClient();
+    const controller = loadAbort();
+    return {
+        call: http.post<CheckResponse>(`${BASE_URL}/check-out`, bookingCode, {
+            signal: controller.signal,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }),
+        controller,
+    };
+};
+
+// Obtener todos los check-outs
+export const getAllCheckOuts = (): UseApiCall<CheckResponse[]> => {
+    const http = getHttpClient();
+    const controller = loadAbort();
+    return {
+        call: http.get<CheckResponse[]>(`${BASE_URL}/check-out`, { signal: controller.signal }),
+        controller,
+    };
+};
 
 export const getAllReservation = (): UseApiCall<ReservationProps[]> => {
     const http = getHttpClient();
