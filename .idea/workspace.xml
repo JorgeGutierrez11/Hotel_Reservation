@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7039a60-b01a-48f6-bfba-b25c2a85b0c3" name="Changes" comment="" />
+    <list default="true" id="f7039a60-b01a-48f6-bfba-b25c2a85b0c3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,8 +65,12 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Integration-loca",
-    "last_opened_file_path": "/home/mauro/Trabajos/Java Projects/Projects/Hotel_Reservation/BACK/Hotel_Reservation",
+    "git-widget-placeholder": "main-loca",
+    "last_opened_file_path": "/home/mauro/Trabajos/Java Projects/Projects",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -85,6 +91,8 @@
       <option name="presentableId" value="Default" />
       <updated>1747251623739</updated>
       <workItem from="1748183083554" duration="54000" />
+      <workItem from="1748201052508" duration="314000" />
+      <workItem from="1748293464332" duration="16000" />
     </task>
     <servers />
   </component>

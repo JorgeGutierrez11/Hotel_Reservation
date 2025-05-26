@@ -28,7 +28,7 @@ export const getRoomForId = (id: number) => {
     const http = getHttpClient();
     const controller = loadAbort();
     return {
-        call: http.get<Room>(`${BASE_URL}/${id}`, { signal: controller.signal }),
+        call: http.get<Room>(`${BASE_URL}/get/${id}`, { signal: controller.signal }),
         controller
     }
 }
