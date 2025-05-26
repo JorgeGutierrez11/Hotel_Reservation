@@ -8,6 +8,20 @@
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/controller/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/jwt/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/user-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.bin/mime" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.vite/deps/_metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.vite/deps/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.vite/deps/react-dom_client.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.vite/deps/react-dom_client.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.vite/deps/react.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.vite/deps/react.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONT/frontend-web-project/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/src/api/services/rooms.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONT/frontend-web-project/src/api/services/rooms.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,10 +62,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.GatewayApplication.executor": "Run",
-    "Spring Boot.HotelBookingServiceApplication.executor": "Debug",
+    "Spring Boot.HotelBookingServiceApplication.executor": "Run",
     "Spring Boot.UserServiceApplication.executor": "Run",
-    "git-widget-placeholder": "Integration-loca",
-    "last_opened_file_path": "/home/mauro/Trabajos/Java Projects/Projects/Hotel_Reservation",
+    "git-widget-placeholder": "main-loca",
+    "last_opened_file_path": "/home/mauro/Trabajos/Java Projects/Projects/Hotel_Reservation/BACK",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -117,6 +131,7 @@
       <workItem from="1748182795588" duration="286000" />
       <workItem from="1748183167233" duration="7130000" />
       <workItem from="1748200987597" duration="63000" />
+      <workItem from="1748293545807" duration="920000" />
     </task>
     <servers />
   </component>

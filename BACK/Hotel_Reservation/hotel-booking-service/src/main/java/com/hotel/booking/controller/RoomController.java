@@ -52,7 +52,7 @@ public class RoomController {
         return ResponseEntity.ok(roomService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(roomService.findBiId(id));

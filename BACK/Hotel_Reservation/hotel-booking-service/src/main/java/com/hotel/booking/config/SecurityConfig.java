@@ -26,24 +26,24 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> {
                     //Definir rutas publicas
                     //Habitaciones
-                    request.requestMatchers(HttpMethod.GET, "/room/filter", "/room/getAll")
+                    request.requestMatchers(HttpMethod.GET, "/room/filter", "/room/getAll", "/room/get/**")
                             .permitAll();
 
                     //Comodidades - publicas
                     request.requestMatchers(HttpMethod.GET, "/amenity/getAll", "/amenity/{id}")
                             .permitAll();
 
+                    //Reservaciones - publicas
+                    request.requestMatchers("/reservation/getAll", "/reservation/getByStatusNot").permitAll();
+
                     //Reservas -> se requiere autenticacion
                     request.requestMatchers("/reservation/reservations", "/reservation/create",
-                                    "/reservation/get/{id}/", "/reservation/update/{id}")
+                                    "/reservation/get/**", "/reservation/update/**")
                             .hasRole("USER");
 
+                    //Reservas para administrativos
                     request.requestMatchers("/reservation/check-in", "/reservation/check-out")
                             .hasAnyRole("RECEPTIONIST", "ADMIN");
-
-                    request.requestMatchers(HttpMethod.GET, "/reservation/getAll")
-                            .permitAll();
-                    /*.hasRole("ADMIN");*/
 
                     request.anyRequest().hasRole("ADMIN");
                 })

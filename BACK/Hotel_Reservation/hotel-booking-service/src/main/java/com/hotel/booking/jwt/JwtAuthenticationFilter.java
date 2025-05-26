@@ -34,14 +34,7 @@ import java.util.stream.Collectors;
  *     modificación, seguimos con la cadena de filtro y Spring se encargará de
  *     enviar la excepción.
  * </p>
- * <h2>Anotación @Component</h2>{
-  "startDate": "2025-06-01T14:00:00",
-  "endDate": "2025-06-05T12:00:00",
-  "reservationStatus": "CONFIRMED",
-  "checkInDate": null,
-  "checkOutDate": null,
-  "roomId": 1
-}
+ *
  */
 @Component
 @RequiredArgsConstructor
@@ -49,7 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -62,13 +55,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 //        System.out.println("User id: " + jwtService.getAllClaims(token).get("id"));
 
         if(token == null) {
-            LOGGER.info("Token not found in request");
             filterChain.doFilter(request, response);
             return;
         }
 
         if(jwtService.isTokenValid(token)) {
-            LOGGER.info("Token is valid");
             String username = jwtService.getUsernameFromToken(token);
 
             if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
