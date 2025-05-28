@@ -7,6 +7,7 @@ import com.hotel.booking.model.dto.request.UserRequest;
 import com.hotel.booking.model.dto.response.CheckResponse;
 import com.hotel.booking.model.entity.Reservation;
 import com.hotel.booking.model.entity.Room;
+import com.hotel.booking.model.enums.CheckType;
 import com.hotel.booking.model.enums.ReservationStatus;
 import com.hotel.booking.model.enums.RoomStatus;
 import com.hotel.booking.repository.ReservationRepository;
@@ -190,6 +191,8 @@ public class ReservationService {
         return reservation;
     }
 
+    /* Métodos para el Recepcionista */
+
     public CheckResponse checkIn(String bookingCode, String authHeader) {
         bookingCode = bookingCode.substring(1, bookingCode.length()-1);
 
@@ -215,7 +218,7 @@ public class ReservationService {
         roomRepository.save(room);
         reservationRepository.save(reservation);
 
-        CheckResponse check = getCheck(bookingCode, authHeader, true);
+        CheckResponse check = getCheck(bookingCode, authHeader, CheckType.CHECK_IN);
         reservation.setReservationStatus(ReservationStatus.CHECKED_IN);
         return check;
     }
@@ -239,7 +242,7 @@ public class ReservationService {
 
         roomRepository.save(room);
         reservationRepository.save(reservation);
-        CheckResponse check = getCheck(bookingCode, authHeader, false);
+        CheckResponse check = getCheck(bookingCode, authHeader, CheckType.CHECK_OUT);
         reservation.setReservationStatus(ReservationStatus.COMPLETED);
         return check;
     }
@@ -266,32 +269,36 @@ public class ReservationService {
             throw new NoSuchDataException("No hay usuarios encontrados");
         }
 
+        // Agrupar reservas por ID de cliente para acceder más rápido
+        Map<Long, List<Reservation>> reservationsByUser = reservations.stream()
+                .collect(Collectors.groupingBy(Reservation::getCustomerId));
+
         List<CheckResponse> responses = new ArrayList<>();
 
         for (UserRequest user : users) {
 
-            Reservation reservation = reservations.stream()
-                    .filter(r -> r.getCustomerId().equals(user.getId()))
-                    .findFirst()
-                    .get();
+            List<Reservation> reservation = reservationsByUser.getOrDefault(user.getId(), Collections.emptyList());
 
-            Room room = reservation.getRoom();
+            for(Reservation r : reservation) {
+                Room room = r.getRoom();
 
-            CheckResponse check = CheckResponse.builder()
-                    .bookingCode(reservation.getBookingCode())
-                    .name(user.getName())
-                    .email(user.getEmail())
-                    .phone(user.getPhoneNumber())
-                    .numberDocument(user.getNumberDocument())
-                    .roomNumber(room.getRoomNumber())
-                    .roomType(room.getRoomType())
-                    .days(calculateDays(reservation.getStartDate(), reservation.getEndDate()))
-                    .totalCost(reservation.getTotalCost())
-                    .checkInDate(reservation.getCheckInDate())
-                    .checkOutDate(reservation.getCheckOutDate())
-                    .build();
+                CheckResponse check = CheckResponse.builder()
+                        .bookingCode(r.getBookingCode())
+                        .name(user.getName())
+                        .email(user.getEmail())
+                        .phone(user.getPhoneNumber())
+                        .numberDocument(user.getNumberDocument())
+                        .roomNumber(room.getRoomNumber())
+                        .roomType(room.getRoomType())
+                        .days(calculateDays(r.getStartDate(), r.getEndDate()))
+                        .totalCost(r.getTotalCost())
+                        .checkInDate(r.getCheckInDate())
+                        .checkOutDate(r.getCheckOutDate())
+                        .build();
 
-            responses.add(check);
+                responses.add(check);
+            }
+
         }
         return responses;
     }
@@ -299,16 +306,16 @@ public class ReservationService {
     /**
      * <p>
      *     Decide que acción se realizará, ya sea que se quiera un <b>Check-in</b> o <b>Check-out</b>.
-     *     Así podemos crear un método que funciona para ambos sin necesidad que crear 2 independientes
+     *     Este método funciona para ambos casos sin necesidad de duplicar lógica.
      * </p>
      * @param bookingCode El código de la reserva
      * @param authHeader El encabezado de autenticación para el microserivico de {@code user-service}
-     * @param isCheckIn El valor que decide si va a ser un <b>Check-in</b> o <b>Check-out</b>
+     * @param type El tipo de operación: {@code CHECK_IN} o {@code CHECK_OUT}.
      * @return Un {@code CheckResponse} con los datos necesarios para hacer un Check
      */
-    private CheckResponse getCheck(String bookingCode, String authHeader, boolean isCheckIn) {
+    private CheckResponse getCheck(String bookingCode, String authHeader, CheckType type) {
 
-        ReservationStatus status = isCheckIn ?
+        ReservationStatus status = (type == CheckType.CHECK_IN) ?
                 ReservationStatus.CONFIRMED : ReservationStatus.CHECKED_IN;
 
         return getUsersForChecks(authHeader, status).stream()
