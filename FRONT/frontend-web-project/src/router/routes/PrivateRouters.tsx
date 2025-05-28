@@ -10,8 +10,8 @@ export const PrivateRouter = () => {
         <RoutesWithNotFound>
             <Route path="/profile" element={<Profile />} />
 
-                <Route path="/reception" element={<Check />} />
             <Route element={<RoleGuard allowedRoles={['ADMIN']} />}>
+                <Route path="/reception" element={<Check />} />
             </Route>
 
            {/*  <Route element={<RoleGuard allowedRoles={['USER']} />}>

@@ -19,8 +19,8 @@ public class EmailService {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     public String sendBookingCode(String email) {
+        String to = email.substring(10, email.length()-2);
 
-        String to = email;
         String subject = "Código de verificación | Check-in";
         String code = UUID.randomUUID().toString().substring(30).toUpperCase();
 

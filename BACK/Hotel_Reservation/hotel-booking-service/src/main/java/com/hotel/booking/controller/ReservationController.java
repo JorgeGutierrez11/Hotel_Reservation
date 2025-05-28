@@ -115,20 +115,20 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.checkOut(bookingCode, authHeader));
     }
 
-    @GetMapping("/check-out")
-    public ResponseEntity<List<CheckResponse>> getAllCheckOuts(
-            @RequestHeader("Authorization") String authHeader) {
-
-        try {
-            return ResponseEntity.ok(reservationService.getUsersForCheckOut(authHeader));
-        } catch (NoSuchDataException err) {
-            LOGGER.warn(err.getMessage());
-            return ResponseEntity.notFound().build();
-        } catch (Exception err) {
-            LOGGER.error(err.getMessage());
-            return ResponseEntity.internalServerError().build();
-        }
-
-    }
+//    @GetMapping("/check-out")
+//    public ResponseEntity<List<CheckResponse>> getAllCheckOuts(
+//            @RequestHeader("Authorization") String authHeader) {
+//
+//        try {
+//            return ResponseEntity.ok(reservationService.getUsersForChecks(authHeader));
+//        } catch (NoSuchDataException err) {
+//            LOGGER.warn(err.getMessage());
+//            return ResponseEntity.notFound().build();
+//        } catch (Exception err) {
+//            LOGGER.error(err.getMessage());
+//            return ResponseEntity.internalServerError().build();
+//        }
+//
+//    }
 
 }

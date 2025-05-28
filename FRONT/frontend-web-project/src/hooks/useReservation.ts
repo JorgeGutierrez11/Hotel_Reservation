@@ -30,7 +30,8 @@ export const useReservation = () => {
     useEffect(() => fetchRoom(), [fetchRoom]);
 
     // Obtener todas las reservaciones (GET)
-    const getReservationsCall = useMemo(() => getAllReservation(), []); //  Aqui puedo hacer que por el cambio el apiCall el useEffect renderice lo que quiero
+    /* Arreglar */
+    const getReservationsCall = useMemo(() => getAllReservation(6), []); //  Aqui puedo hacer que por el cambio el apiCall el useEffect renderice lo que quiero
     const {
         data: reservations,
         loading: loadingReservations,

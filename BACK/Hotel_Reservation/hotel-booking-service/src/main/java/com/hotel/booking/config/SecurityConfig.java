@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> {
                     //Definir rutas publicas
                     //Habitaciones
-                    request.requestMatchers(HttpMethod.GET, "/room/filter", "/room/getAll", "/room/get/**")
+                    request.requestMatchers(HttpMethod.GET, "/room/filter/**", "/room/getAll", "/room/get/**")
                             .permitAll();
 
                     //Comodidades - publicas
@@ -34,7 +34,9 @@ public class SecurityConfig {
                             .permitAll();
 
                     //Reservaciones - publicas
-                    request.requestMatchers("/reservation/getAll", "/reservation/getByStatusNot").permitAll();
+                    request.requestMatchers("/reservation/getAll",
+                            "/reservation/getByStatusNot", "/reservation/filter/**").
+                            permitAll();
 
                     //Reservas -> se requiere autenticacion
                     request.requestMatchers("/reservation/reservations", "/reservation/create",

@@ -8,6 +8,7 @@ const BASE_URL = "/reservation";
 
 // Servicio para realizar check-in
 export const checkIn = (bookingCode: string): UseApiCall<CheckResponse> => {
+    console.log('soy el puto codigo', bookingCode);
     const http = getHttpClient();
     const controller = loadAbort();
     return {
@@ -46,11 +47,11 @@ export const getAllCheckOuts = (): UseApiCall<CheckResponse[]> => {
     };
 };
 
-export const getAllReservation = (): UseApiCall<ReservationProps[]> => {
+export const getAllReservation = (id: number): UseApiCall<ReservationProps[]> => {
     const http = getHttpClient();
     const controller = loadAbort();
     return {
-        call: http.get<ReservationProps[]>(`${BASE_URL}/getByStatusNot`, { signal: controller.signal }),
+        call: http.get<ReservationProps[]>(`${BASE_URL}/filter/${id}`, { signal: controller.signal }),
         controller
     }
 }

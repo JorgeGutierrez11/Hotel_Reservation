@@ -191,6 +191,7 @@ public class ReservationService {
     }
 
     public CheckResponse checkIn(String bookingCode, String authHeader) {
+        bookingCode = bookingCode.substring(1, bookingCode.length()-1);
         Reservation reservation = findByBookingCode(bookingCode);
         Room room = reservation.getRoom();
 
@@ -202,22 +203,24 @@ public class ReservationService {
         }
 
         LocalDate today = LocalDate.now();
-        LocalDate startDate = reservation.getStartDate().toLocalDate();
+        /*LocalDate startDate = reservation.getStartDate().toLocalDate();
         if (today.isBefore(startDate)) {
             throw new IllegalStateException("No se puede hacer check-in antes de la fecha de inicio");
-        }
+        }*/
 
         reservation.setCheckInDate(LocalDateTime.now());
-        reservation.setReservationStatus(ReservationStatus.CHECKED_IN);
         room.setRoomStatus(RoomStatus.OCCUPIED);
 
         roomRepository.save(room);
         reservationRepository.save(reservation);
 
-        return getCheck(bookingCode, authHeader);
+        CheckResponse check = getCheck(bookingCode, authHeader, ReservationStatus.CONFIRMED);
+        reservation.setReservationStatus(ReservationStatus.CHECKED_IN);
+        return check;
     }
 
     public CheckResponse checkOut(String bookingCode, String authHeader) {
+        bookingCode = bookingCode.substring(1, bookingCode.length()-1);
         Reservation reservation = findByBookingCode(bookingCode);
         Room room = reservation.getRoom();
 
@@ -229,24 +232,28 @@ public class ReservationService {
         }
 
         reservation.setCheckOutDate(LocalDateTime.now());
-        reservation.setReservationStatus(ReservationStatus.COMPLETED);
+
         room.setRoomStatus(RoomStatus.AVAILABLE);
 
         roomRepository.save(room);
         reservationRepository.save(reservation);
-
-        return getCheck(bookingCode, authHeader);
+        System.out.println(bookingCode);
+        CheckResponse check = getCheck(bookingCode, authHeader, ReservationStatus.CHECKED_IN);
+        reservation.setReservationStatus(ReservationStatus.COMPLETED);
+        return check;
     }
 
     /**
      * <p>
-     *     Mostrar todos los usuarios que están en el hotel
+     *     Traer todos los usuarios de la base de datos para el recepcionista.
+     *     Tanto para Chec-in como para CHeck-out
      * </p>
      * @param authHeader Encabezado donde viene el token
+     * @param status El estado de la reserva
      * @return Una lista {@code List<CheckResponse>} para el Recepcionista
      */
-    public List<CheckResponse> getUsersForCheckOut(String authHeader) {
-        List<Reservation> reservations = findByStatus(ReservationStatus.CONFIRMED);
+    public List<CheckResponse> getUsersForChecks(String authHeader, ReservationStatus status) {
+        List<Reservation> reservations = findByStatus(status);
 
         List<UserRequest> users = checkService.getUsersForCheckOut(reservations, authHeader);
 
@@ -284,8 +291,8 @@ public class ReservationService {
         return responses;
     }
 
-    private CheckResponse getCheck(String bookingCode, String authHeader) {
-        return getUsersForCheckOut(authHeader).stream()
+    private CheckResponse getCheck(String bookingCode, String authHeader, ReservationStatus status) {
+        return getUsersForChecks(authHeader, status).stream()
                 .filter(c -> c.getBookingCode().equals(bookingCode))
                 .findFirst()
                 .get();
