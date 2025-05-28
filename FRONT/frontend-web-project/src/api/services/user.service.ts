@@ -3,7 +3,9 @@ import { loadAbort } from "../utilities/loadAbort.utility"
 import { UseApiCall } from "../models/useApi.model"
 import { getHttpClient } from "./axios.service"
 import { UserRequest} from '../../models/userRec.model';
+
 const BASE_URL = "/auth"
+
 export const createUser = (UserRequest: UserRequest): UseApiCall<Client> => {
     const controller = loadAbort();
     const http = getHttpClient();
@@ -20,6 +22,15 @@ export const recoverPassword = (email:string): UseApiCall<Client> => {
         call: http.post<Client>(`${BASE_URL}/login`, email, { signal: controller.signal }),
         controller
     };
+}
+
+export const getUser = (): UseApiCall<Client> => {
+    const controller = loadAbort();
+    const http = getHttpClient();
+    return {
+        call: http.get<Client>('/users/getUser/info', {signal: controller.signal}),
+        controller
+    }
 }
 /*
 export const getUser = (id: number): UseApiCall<Client> => {

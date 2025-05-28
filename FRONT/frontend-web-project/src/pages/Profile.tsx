@@ -6,17 +6,23 @@ import { Reservation } from "../models/reservation.model";
 import "./Profile.css";
 import { getUserReservations } from "../api/services/reservations.service";
 import { useApi } from "../api/hooks/useApi";
+import { getUser } from "../api/services/user.service";
+import { Client } from "../models/client.model";
 
 function Profile() {
-  const userCall = useMemo(() => getUserReservations(), []);
-  const { data: reservations, loading, error, fetch } = useApi<Reservation[]>(userCall);
+  const userReservationCall = useMemo(() => getUserReservations(), []);
+  const { data: reservations, loading, error, fetch } = useApi<Reservation[]>(userReservationCall);
   useEffect(() => fetch(), [fetch]);
+
+  const userInfoCall = useMemo(() => getUser(), []);
+  const {data: info, error: infoError, loading: infoLoading, fetch: infoFetch} = useApi<Client>(userInfoCall);
+  useEffect(() => infoFetch(), [infoFetch])
 
   const [bookingHistory, setBookingHistory] = useState(false);
 
-  if (loading) return <p>Cargando reservas...</p>;
-  if (error) return <p>Error al cargar las reservas.</p>;
-  if (!reservations) return <p>No se encontraron reservas disponibles</p>;
+  if (loading || infoLoading) return <p>Cargando datos del usuario...</p>;
+  if (error || infoError) return <p>Error al cargar los datos.</p>;
+  if (!reservations || !info) return <p>No se a encontrado informacion del usuario</p>;
   return (
     <div className="profile-page" style={{ paddingTop: '100px' }}>
       <div className="profile-header">
@@ -29,7 +35,7 @@ function Profile() {
         </div>
         <button className="profile-edit-button">Editar Perfil</button>
       </div>
-      <DataCard />
+      <DataCard userData={info}/>
       <div className="slider-actions">
         <div className="slider-container">
           <button
@@ -51,7 +57,7 @@ function Profile() {
             bookingHistory
               ? !["PENDING", "CONFIRMED", "CHECKED_IN"].includes(reservation.reservationStatus)
               : ["PENDING", "CONFIRMED", "CHECKED_IN"].includes(reservation.reservationStatus)
-          )
+          ).reverse()
           .map((reservation) => (
             <BookingCard key={reservation.id} reservation={reservation} />
           ))}

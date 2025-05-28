@@ -1,32 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Input } from "../general/Input";
 import "./DataCard.css";
-import { empyUser, User } from "../../models/client.model";
-import { Reservation } from "../../models/reservation.model";
+import { Client, empyUser } from "../../models/client.model";
 
-interface DataCardProps {
-    userData: User;
-    reservation: Reservation[];
+interface Props {
+    userData: Client
 }
 
-function DataCard(/* { userData }: DataCardProps */) {
-    const [copyFormData, setCopyFormData] = useState<User>(empyUser);
-    const [formData, setFormData] = useState<User>(empyUser);
+type ClientField = {
+    name: string;
+    type: string;
+    infName: keyof Client ; 
+  };
+  
+function DataCard({ userData }: Props) {
 
-    const fields = [
-        { name: "Nombre", type: "text" },
-        { name: "Apellido", type: "text" },
-        { name: "Documento", type: "text" },
-        { name: "Correo", type: "email" },
-        { name: "Teléfono", type: "text" },
-        { name: "Contraseña", type: "password" },
+    const [copyFormData, setCopyFormData] = useState<Client>(empyUser);
+    const [formData, setFormData] = useState<Client>(empyUser);
+    
+    const fields: ClientField[] = [
+        { name: "Nombre", type: "text" , infName: "name"},
+        { name: "Apellido", type: "text", infName: "lastname"},
+        { name: "Documento", type: "text", infName: "numberDocument"},
+        { name: "Correo", type: "email", infName: "email"},
+        { name: "Teléfono", type: "text", infName: "phoneNumber"},
+        { name: "Contraseña", type: "password", infName: "password"},
     ];
-
-    /* llamo a la api y seteo los datos del user */
-/*     useEffect(() => {
-        setFormData(userData);
-        setCopyFormData(userData);
-    }, [userData]) */
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -50,12 +49,12 @@ function DataCard(/* { userData }: DataCardProps */) {
         <form className="container" onSubmit={handleSubmit}>
             <div className="container-data">
                 <div className="data">
-                    {fields.map(({ name, type }) => (
+                    {fields.map(({ name, type, infName }) => (
                         <Input
-                            key={name}
+                            key={infName}
                             name={name}
                             type={type}
-                            value={"jiji " /* formData[name as keyof User] */} // Indicamos que name es clave válida
+                            value={String(userData[infName] || "")} 
                             onChange={handleChange}
                         />
                     ))}
