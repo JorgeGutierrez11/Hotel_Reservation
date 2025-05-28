@@ -192,6 +192,7 @@ public class ReservationService {
 
     public CheckResponse checkIn(String bookingCode, String authHeader) {
         bookingCode = bookingCode.substring(1, bookingCode.length()-1);
+
         Reservation reservation = findByBookingCode(bookingCode);
         Room room = reservation.getRoom();
 
@@ -214,13 +215,14 @@ public class ReservationService {
         roomRepository.save(room);
         reservationRepository.save(reservation);
 
-        CheckResponse check = getCheck(bookingCode, authHeader, ReservationStatus.CONFIRMED);
+        CheckResponse check = getCheck(bookingCode, authHeader, true);
         reservation.setReservationStatus(ReservationStatus.CHECKED_IN);
         return check;
     }
 
     public CheckResponse checkOut(String bookingCode, String authHeader) {
         bookingCode = bookingCode.substring(1, bookingCode.length()-1);
+
         Reservation reservation = findByBookingCode(bookingCode);
         Room room = reservation.getRoom();
 
@@ -237,19 +239,22 @@ public class ReservationService {
 
         roomRepository.save(room);
         reservationRepository.save(reservation);
-        System.out.println(bookingCode);
-        CheckResponse check = getCheck(bookingCode, authHeader, ReservationStatus.CHECKED_IN);
+        CheckResponse check = getCheck(bookingCode, authHeader, false);
         reservation.setReservationStatus(ReservationStatus.COMPLETED);
         return check;
     }
 
     /**
      * <p>
-     *     Traer todos los usuarios de la base de datos para el recepcionista.
-     *     Tanto para Chec-in como para CHeck-out
+     *     Devuelve los usuarios para el Check-in o Check-out. Dependiendo del status que se busque
      * </p>
-     * @param authHeader Encabezado donde viene el token
-     * @param status El estado de la reserva
+     * <p>
+     *     Para los usuarios que van a realizar el <b>Check-in</b> van a tener un estado {@code ReservationStatus.CONFIRMED}.
+     *     Para los usuarios que van a realizar el <b>Check-out</b> vana tener un estado {@code ReservationStatus.CHECKED_IN}
+     * </p>
+     *
+     * @param authHeader Encabezado donde viene el token para enviarlo en la peticón
+     * @param status El estado de la reserva para encontrar los usuarios deseados
      * @return Una lista {@code List<CheckResponse>} para el Recepcionista
      */
     public List<CheckResponse> getUsersForChecks(String authHeader, ReservationStatus status) {
@@ -291,7 +296,21 @@ public class ReservationService {
         return responses;
     }
 
-    private CheckResponse getCheck(String bookingCode, String authHeader, ReservationStatus status) {
+    /**
+     * <p>
+     *     Decide que acción se realizará, ya sea que se quiera un <b>Check-in</b> o <b>Check-out</b>.
+     *     Así podemos crear un método que funciona para ambos sin necesidad que crear 2 independientes
+     * </p>
+     * @param bookingCode El código de la reserva
+     * @param authHeader El encabezado de autenticación para el microserivico de {@code user-service}
+     * @param isCheckIn El valor que decide si va a ser un <b>Check-in</b> o <b>Check-out</b>
+     * @return Un {@code CheckResponse} con los datos necesarios para hacer un Check
+     */
+    private CheckResponse getCheck(String bookingCode, String authHeader, boolean isCheckIn) {
+
+        ReservationStatus status = isCheckIn ?
+                ReservationStatus.CONFIRMED : ReservationStatus.CHECKED_IN;
+
         return getUsersForChecks(authHeader, status).stream()
                 .filter(c -> c.getBookingCode().equals(bookingCode))
                 .findFirst()

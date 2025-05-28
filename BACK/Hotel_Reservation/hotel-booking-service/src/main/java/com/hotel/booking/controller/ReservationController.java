@@ -4,6 +4,7 @@ import com.hotel.booking.exception.NoSuchDataException;
 import com.hotel.booking.model.dto.ReservationDTO;
 import com.hotel.booking.model.dto.response.CheckResponse;
 import com.hotel.booking.model.entity.Reservation;
+import com.hotel.booking.model.enums.ReservationStatus;
 import com.hotel.booking.service.ReservationService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -115,20 +116,20 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.checkOut(bookingCode, authHeader));
     }
 
-//    @GetMapping("/check-out")
-//    public ResponseEntity<List<CheckResponse>> getAllCheckOuts(
-//            @RequestHeader("Authorization") String authHeader) {
-//
-//        try {
-//            return ResponseEntity.ok(reservationService.getUsersForChecks(authHeader));
-//        } catch (NoSuchDataException err) {
-//            LOGGER.warn(err.getMessage());
-//            return ResponseEntity.notFound().build();
-//        } catch (Exception err) {
-//            LOGGER.error(err.getMessage());
-//            return ResponseEntity.internalServerError().build();
-//        }
-//
-//    }
+    @GetMapping("/check-out")
+    public ResponseEntity<List<CheckResponse>> getAllCheckOuts(
+            @RequestHeader("Authorization") String authHeader) {
+
+        try {
+            return ResponseEntity.ok(reservationService.getUsersForChecks(authHeader, ReservationStatus.CHECKED_IN));
+        } catch (NoSuchDataException err) {
+            LOGGER.warn(err.getMessage());
+            return ResponseEntity.notFound().build();
+        } catch (Exception err) {
+            LOGGER.error(err.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
+
+    }
 
 }

@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f6032fe-bbc3-40b5-847f-67d57dd50878" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.bin/mime" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONT/frontend-web-project/node_modules/.vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONT/frontend-web-project/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONT/frontend-web-project/src/api/services/rooms.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONT/frontend-web-project/src/api/services/rooms.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/controller/ReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Reservation/hotel-booking-service/src/main/java/com/hotel/booking/service/ReservationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,29 +38,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.GatewayApplication.executor": "Run",
-    "Spring Boot.HotelBookingServiceApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "git-widget-placeholder": "main-loca",
-    "last_opened_file_path": "/home/mauro/Trabajos/Java Projects/Projects/Hotel_Reservation/BACK",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.HotelBookingServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main-loca&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mauro/Trabajos/Java Projects/Projects/Hotel_Reservation/BACK&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -120,7 +117,8 @@
       <workItem from="1748182795588" duration="286000" />
       <workItem from="1748183167233" duration="7130000" />
       <workItem from="1748200987597" duration="63000" />
-      <workItem from="1748293545807" duration="1271000" />
+      <workItem from="1748293545807" duration="1823000" />
+      <workItem from="1748391777208" duration="1647000" />
     </task>
     <servers />
   </component>
